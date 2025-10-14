@@ -1,5 +1,3 @@
-am5.ready(function() {
-
 var mainColor = am5.color(0xc83830);
 var secondaryColor = am5.color(0xd9cec8);
 
@@ -1705,5 +1703,3 @@ function makeMapChart() {
 
   chart.appear(2000);
 }
-
-}); // end am5.ready()

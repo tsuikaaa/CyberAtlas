@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link src="script.js" ></script>
-    <title>CYBER ATLAS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>CYBER ATLAS</title>
 </head>
 <body>
-    <h1>CYBER ATLAS</h1>
+    <div class="header">
+        <h1>CYBER ATLAS</h1>
         <p>Bienvenue dans le monde invisible de la cybercriminalité. Nous avons plongé dans les six pays les plus touchés pour décoder les attaques, analyser leur fréquence et mesurer leur impact. Chaque donnée raconte une histoire, chaque chiffre révèle une menace.</p>
-        <p><em>Mais restez vigilant… dans ce monde, personne n’est jamais totalement à l’abri.</em></p>
+        <p><em>Mais restez vigilant… dans ce monde, personne n’est jamais totalement à l’abri.</em></p> 
     </div>
-    
+
+  <div id="chartdiv">
+    <div id="piediv"></div>
+    <div id="linediv"></div>
+    <div id="gaugediv"></div>    
+    <div id="mapdiv"></div>
+    <div id="columndiv"></div>
+  </div>
+
+  <!-- 🔹 Librairies amCharts -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <!-- 🔹 Ton fichier séparé -->
+  <script src="script.js"></script>
 </body>
 </html>
