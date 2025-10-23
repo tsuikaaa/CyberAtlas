@@ -1,1705 +1,1212 @@
-var mainColor = am5.color(0xc83830);
-var secondaryColor = am5.color(0xd9cec8);
-
-makeMapChart();
-makeColumnChart();
-makePieChart();
-makeRadarGauge();
-makeLineSeriesChart();
-
-function makeLineSeriesChart() {
-  // Create root element
-  // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-  var root = am5.Root.new("linediv");
-
-  var myTheme = am5.Theme.new(root);
-
-  myTheme.rule("Label").setAll({
-    fontSize: "0.8em"
-  });
-
-  root.setThemes([am5themes_Animated.new(root), myTheme]);
-
-  // Create chart
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/
-  var chart = root.container.children.push(
-    am5xy.XYChart.new(root, {
-      panX: false,
-      panY: false,
-      wheelX: "panX",
-      wheelY: "zoomX",
-      paddingLeft: 0,
-      layout: root.verticalLayout
-    })
-  );
-
-  var data = [
-    {
-      year: "2021",
-      income: 18.5,
-      expenses: 12.1
-    },
-    {
-      year: "2022",
-      income: 22.2,
-      expenses: 30.5
-    },
-    {
-      year: "2023",
-      income: 39.1,
-      expenses: 34.9
-    },
-    {
-      year: "2024",
-      income: 45.5,
-      expenses: 31.1
-    },
-    {
-      year: "2025",
-      income: 30.6,
-      expenses: 22.2,
-      strokeSettings: {
-        strokeWidth: 3,
-        strokeDasharray: [5, 5]
-      }
-    },
-    {
-      year: "2026",
-      income: 34.1,
-      expenses: 32.9,
-      info: "(projection)"
-    }
-  ];
-
-  // Create axes
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
-  var xRenderer = am5xy.AxisRendererX.new(root, {
-    minorGridEnabled: true,
-    minGridDistance: 60
-  });
-  var xAxis = chart.xAxes.push(
-    am5xy.CategoryAxis.new(root, {
-      categoryField: "year",
-      renderer: xRenderer,
-      tooltip: am5.Tooltip.new(root, {})
-    })
-  );
-  xRenderer.grid.template.setAll({
-    location: 1
-  })
-
-  xAxis.data.setAll(data);
-
-  var yAxis = chart.yAxes.push(
-    am5xy.ValueAxis.new(root, {
-      min: 0,
-      extraMax: 0.1,
-      renderer: am5xy.AxisRendererY.new(root, {
-        strokeOpacity: 0.1
-      })
-    })
-  );
-
-
-  // Add series
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-
-  var series1 = chart.series.push(
-    am5xy.LineSeries.new(root, {
-      name: "Income",
-      xAxis: xAxis,
-      yAxis: yAxis,
-      stroke: secondaryColor,
-      fill: secondaryColor,
-      valueYField: "income",
-      categoryXField: "year",
-      tooltip: am5.Tooltip.new(root, {
-        pointerOrientation: "horizontal",
-        labelText: "{name}: {valueY} {info}"
-      })
-    })
-  );
-
-  series1.data.setAll(data);
-
-  series1.strokes.template.setAll({
-    strokeWidth: 3,
-    templateField: "strokeSettings"
-  });
-
-  var series2 = chart.series.push(
-    am5xy.LineSeries.new(root, {
-      name: "Expenses",
-      xAxis: xAxis,
-      yAxis: yAxis,
-      stroke: mainColor,
-      fill: mainColor,
-      valueYField: "expenses",
-      categoryXField: "year",
-      tooltip: am5.Tooltip.new(root, {
-        pointerOrientation: "horizontal",
-        labelText: "{name}: {valueY} {info}"
-      })
-    })
-  );
-
-  series2.strokes.template.setAll({
-    strokeWidth: 3,
-    templateField: "strokeSettings"
-  });
-
-
-  series2.data.setAll(data);
-
-  chart.set("cursor", am5xy.XYCursor.new(root, {}));
-
-  // Make stuff animate on load
-  // https://www.amcharts.com/docs/v5/concepts/animations/
-  chart.appear(1000, 100);
-  series1.appear(1000, 500);
-  series2.appear(1000, 1500);
-
-}
-
-
-function makeRadarGauge() {
-
-  var continents = ["europe", "asia", "northAmerica", "southAmerica", "oceania", "africa"];
-  var continentNames = { europe: "Europe", asia: "Asia", northAmerica: "North America", southAmerica: "South America", oceania: "Oceania", africa: "Africa" };
-
-  var root = am5.Root.new("gaugediv");
-
-  var myTheme = am5.Theme.new(root);
-  myTheme.rule("Label").setAll({
-    fontSize: "0.8em"
-  });
-
-  root.setThemes([
-    am5themes_Animated.new(root), myTheme
-  ]);
-
-  // Create chart
-  // https://www.amcharts.com/docs/v5/charts/radar-chart/
-  var radarGauge = root.container.children.push(am5radar.RadarChart.new(root, {
-    radius: am5.percent(90),
-    panX: false,
-    panY: false,
-    wheelX: "none",
-    wheelY: "none",
-    innerRadius: am5.percent(20),
-    startAngle: -90,
-    endAngle: 180
-  }));
-
-  radarGauge.states.create("hidden", {
-    width: 1,
-    opacity: 0,
-    visible: false
-  })
-
-  // Data
-  var data = [];
-
-  am5.array.each(continents, function (id) {
-    data.push({
-      category: continentNames[id],
-      value: Math.round(Math.random() * 70) + 20,
-      full: 100,
-      id: id
-    })
-  })
-
-
-  // Create axes and their renderers
-  // https://www.amcharts.com/docs/v5/charts/radar-chart/#Adding_axes
-  var xRenderer = am5radar.AxisRendererCircular.new(root, {
-    minGridDistance: 30
-  });
-
-  xRenderer.labels.template.setAll({
-    radius: 10
-  });
-
-  xRenderer.grid.template.setAll({
-    forceHidden: true
-  });
-
-  var xAxis = radarGauge.xAxes.push(am5xy.ValueAxis.new(root, {
-    renderer: xRenderer,
-    min: 0,
-    max: 100,
-    strictMinMax: true,
-    numberFormat: "#'%'"
-  }));
-
-  //xRenderer.labels.template.set("forceHidden", true)
-
-
-  var yRenderer = am5radar.AxisRendererRadial.new(root, {
-    minGridDistance: 20
-  });
-
-  yRenderer.labels.template.setAll({
-    forceHidden: true
-  });
-
-  yRenderer.grid.template.setAll({
-    forceHidden: true
-  });
-
-  var yAxis = radarGauge.yAxes.push(am5xy.CategoryAxis.new(root, {
-    categoryField: "category",
-    renderer: yRenderer
-  }));
-
-  yAxis.data.setAll(data);
-
-  // Create series
-  // https://www.amcharts.com/docs/v5/charts/radar-chart/#Adding_series
-  var series1 = radarGauge.series.push(am5radar.RadarColumnSeries.new(root, {
-    xAxis: xAxis,
-    yAxis: yAxis,
-    clustered: false,
-    valueXField: "full",
-    categoryYField: "category",
-    fill: root.interfaceColors.get("alternativeBackground")
-  }));
-
-  series1.columns.template.setAll({
-    width: am5.p100,
-    fillOpacity: 0.1,
-    strokeOpacity: 0,
-    cornerRadius: 20
-  });
-
-  series1.data.setAll(data);
-
-  var gaugeSeries = radarGauge.series.push(am5radar.RadarColumnSeries.new(root, {
-    xAxis: xAxis,
-    yAxis: yAxis,
-    clustered: false,
-    valueXField: "value",
-    fill: mainColor,
-    stroke: mainColor,
-    categoryYField: "category"
-  }));
-
-  gaugeSeries.columns.template.setAll({
-    width: am5.p100,
-    strokeOpacity: 0,
-    cornerRadius: 20,
-    cursorOverStyle: "pointer",
-    tooltipText: "{category}: {valueX}"
-  });
-
-  gaugeSeries.columns.template.states.create("dimm", {
-    opacity: 0.4
-  })
-
-  gaugeSeries.data.setAll(data);
-
-  // Animate chart and series in
-  // https://www.amcharts.com/docs/v5/concepts/animations/#Initial_animation
-  gaugeSeries.appear(2000);
-}
-
-
-
-function makePieChart() {
-
-  var root = am5.Root.new("piediv");
-
-  root.setThemes([
-    am5themes_Animated.new(root)
-  ]);
-
-  // Create chart
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
-  var startAngle = Math.random() * 360;
-  var chart = root.container.children.push(am5percent.PieChart.new(root, {
-    innerRadius: am5.percent(70),
-    radius: am5.percent(90)    
-  }));
- 
-
-  // Create series
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
-  var series = chart.series.push(am5percent.PieSeries.new(root, {
-    valueField: "value",
-    categoryField: "category",
-    startAngle: startAngle,
-    endAngle: startAngle + 360
-  }));
-
-  series.ticks.template.setAll({
-    forceHidden: true
-  })
-
-  series.slices.template.setAll({
-    templateField: "settings",
-    cornerRadius: 10,
-    strokeOpacity: 0,
-    tooltipText: undefined,
-    interactive: false
-  });
-
-  series.labels.template.setAll({
-    forceHidden: true
-  });
-
-  var value1 = Math.random();
-  var value2 = Math.random();
-
-  value2 = Math.max(Math.min(value1 * 4, value2), value1 / 4)
-
-  // Set data
-  // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
-  series.data.setAll([
-    { value: value1, category: "One", settings: { fill: mainColor } },
-    { value: value2, category: "Two", settings: { fill: am5.color(0x000000), fillOpacity: 0.1 } }
-  ]);
-
-
-  // Play initial series animation
-  // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-  series.appear(2000);
-
-  var label = chart.seriesContainer.children.push(am5.Label.new(root, {
-    text: "My Title",
-    fontSize: 12,
-    centerX: am5.p50,
-    centerY: am5.p50
-  }))
-}
-
-
-function makeColumnChart() {
-  var root = am5.Root.new("columndiv");
-
-  const myTheme = am5.Theme.new(root);
-
-  myTheme.rule("InterfaceColors").setAll({
-    primaryButton: am5.color(0xc83830),
-    primaryButtonHover: am5.Color.lighten(am5.color(0xc83830), 0.2),
-    primaryButtonDown: am5.Color.lighten(am5.color(0xc83830), -0.2),
-    primaryButtonActive: am5.color(0xd9cec8),
-  });
-
-  myTheme.rule("Label").setAll({
-    fontSize: "0.8em"
-  });
-
-  myTheme.rule("AxisLabel", ["minor"]).setAll({
-    dy: 1
-  });
-
-  // Set themes
-  // https://www.amcharts.com/docs/v5/concepts/themes/
-  root.setThemes([
-    am5themes_Animated.new(root),
-    myTheme
-  ]);
-
-
-  // Create chart
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/
-  var chart = root.container.children.push(am5xy.XYChart.new(root, {
-    panX: false,
-    panY: false,
-    wheelX: "panX",
-    wheelY: "zoomX",
-    paddingLeft: 0
-  }));
-
-
-  // Add cursor
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-  var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
-    behavior: "zoomX"
-  }));
-  cursor.lineY.set("visible", false);
-
-  var date = new Date();
-  date.setHours(0, 0, 0, 0);
-  var value = 100;
-
-  function generateData() {
-    value = Math.round((Math.random() * 10 - 5) + value);
-    am5.time.add(date, "day", 1);
-    return {
-      date: date.getTime(),
-      value: value
-    };
+/**
+ * ---------------------------------------
+ * This demo was created using amCharts 5.
+ * 
+ * For more information visit:
+ * https://www.amcharts.com/
+ * 
+ * Documentation is available at:
+ * https://www.amcharts.com/docs/v5/
+ * ---------------------------------------
+ */
+
+var bulletColor = am5.color(0xc83830);
+var polygonColor = am5.color(0xd9cec8);
+
+var data = [
+  {
+    "id": "CN",
+    "threatened": 34,
+    "updated": 125
+  },
+  {
+    "id": "AT",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "BE",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "BG",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "HR",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "CY",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "CZ",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "DK",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "EE",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "FI",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "FR",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "DE",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "GR",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "HU",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "IE",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "IT",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "LV",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "LT",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "LU",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "MT",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "NL",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "PL",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "PT",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "RO",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "SK",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "SI",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "ES",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "SE",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "VN",
+    "threatened": 46,
+    "updated": 10
+  },
+  {
+    "id": "TW",
+    "threatened": 32,
+    "updated": 10
+  },
+  {
+    "id": "JP",
+    "threatened": 24,
+    "updated": 10
+  },
+  {
+    "id": "IN",
+    "threatened": 26,
+    "updated": 10
+  },
+  {
+    "id": "TH",
+    "threatened": 36,
+    "updated": 10
+  },
+  {
+    "id": "CH",
+    "threatened": 31,
+    "updated": 10
+  },
+  {
+    "id": "ID",
+    "threatened": 32,
+    "updated": 10
+  },
+  {
+    "id": "MY",
+    "threatened": 24,
+    "updated": 10
+  },
+  {
+    "id": "KH",
+    "threatened": 49,
+    "updated": 10
+  },
+  {
+    "id": "GB",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "ZA",
+    "threatened": 30,
+    "updated": 10
+  },
+  {
+    "id": "BR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BD",
+    "threatened": 37,
+    "updated": 10
+  },
+  {
+    "id": "SG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "IL",
+    "threatened": 17,
+    "updated": 10
+  },
+  {
+    "id": "PH",
+    "threatened": 17,
+    "updated": 10
+  },
+  {
+    "id": "CL",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AU",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "PK",
+    "threatened": 29,
+    "updated": 10
+  },
+  {
+    "id": "TR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "LK",
+    "threatened": 44,
+    "updated": 10
+  },
+  {
+    "id": "CO",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "PE",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "NI",
+    "threatened": 18,
+    "updated": 10
+  },
+  {
+    "id": "NO",
+    "threatened": 15,
+    "updated": 10
+  },
+  {
+    "id": "CR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "JO",
+    "threatened": 20,
+    "updated": 10
+  },
+  {
+    "id": "DO",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AE",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "NZ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "EC",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GT",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "HN",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MG",
+    "threatened": 47,
+    "updated": 10
+  },
+  {
+    "id": "MM",
+    "threatened": 44,
+    "updated": 10
+  },
+  {
+    "id": "TN",
+    "threatened": 28,
+    "updated": 10
+  },
+  {
+    "id": "KZ",
+    "threatened": 27,
+    "updated": 10
+  },
+  {
+    "id": "RS",
+    "threatened": 37,
+    "updated": 10
+  },
+  {
+    "id": "EG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SA",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SV",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BW",
+    "threatened": 37,
+    "updated": 10
+  },
+  {
+    "id": "TT",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MA",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "DZ",
+    "threatened": 30,
+    "updated": 10
+  },
+  {
+    "id": "OM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "UY",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BS",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "LS",
+    "threatened": 50,
+    "updated": 10
+  },
+  {
+    "id": "UA",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BH",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "QA",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MU",
+    "threatened": 40,
+    "updated": 10
+  },
+  {
+    "id": "FJ",
+    "threatened": 32,
+    "updated": 10
+  },
+  {
+    "id": "IS",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KE",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "LI",
+    "threatened": 37,
+    "updated": 10
+  },
+  {
+    "id": "GY",
+    "threatened": 38,
+    "updated": 10
+  },
+  {
+    "id": "HT",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BA",
+    "threatened": 35,
+    "updated": 10
+  },
+  {
+    "id": "NG",
+    "threatened": 14,
+    "updated": 10
+  },
+  {
+    "id": "NA",
+    "threatened": 21,
+    "updated": 10
+  },
+  {
+    "id": "BO",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "PA",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "VE",
+    "threatened": 15,
+    "updated": 10
+  },
+  {
+    "id": "MK",
+    "threatened": 33,
+    "updated": 10
+  },
+  {
+    "id": "ET",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GH",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MD",
+    "threatened": 31,
+    "updated": 10
+  },
+  {
+    "id": "AO",
+    "threatened": 32,
+    "updated": 10
+  },
+  {
+    "id": "JM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MZ",
+    "threatened": 16,
+    "updated": 10
+  },
+  {
+    "id": "PY",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "ZM",
+    "threatened": 17,
+    "updated": 10
+  },
+  {
+    "id": "LB",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CD",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CI",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TZ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "IQ",
+    "threatened": 39,
+    "updated": 10
+  },
+  {
+    "id": "GE",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SN",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AZ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CM",
+    "threatened": 11,
+    "updated": 10
+  },
+  {
+    "id": "UG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AL",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "NP",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GA",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KW",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BZ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "PG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MW",
+    "threatened": 17,
+    "updated": 10
+  },
+  {
+    "id": "LR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "VG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "ZW",
+    "threatened": 18,
+    "updated": 10
+  },
+  {
+    "id": "BJ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BB",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MC",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "UZ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "DJ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "PF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KY",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CW",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "VU",
+    "threatened": 22,
+    "updated": 10
+  },
+  {
+    "id": "RW",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SL",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MN",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SZ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MH",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "PM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KN",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GD",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SD",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TC",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AW",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "ME",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KG",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "YE",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "VC",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "NE",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "LC",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "NR",
+    "threatened": 30,
+    "updated": 10
+  },
+  {
+    "id": "GQ",
+    "threatened": 13,
+    "updated": 10
+  },
+  {
+    "id": "LY",
+    "threatened": 31,
+    "updated": 10
+  },
+  {
+    "id": "WS",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GN",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TL",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MS",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TD",
+    "threatened": 13,
+    "updated": 10
+  },
+  {
+    "id": "ML",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MV",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TJ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CV",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BI",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GP",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "BT",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MQ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TO",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "MR",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "DM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CX",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AD",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SB",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "YT",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "AI",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CC",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "ER",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "CK",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SS",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KM",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "KI",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "NF",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GI",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TV",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "IO",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "TK",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "GW",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "SJ",
+    "threatened": 10,
+    "updated": 10
+  },
+  {
+    "id": "RE",
+    "threatened": 10,
+    "updated": 10
   }
-
-  function generateDatas(count) {
-    var data = [];
-    for (var i = 0; i < count; ++i) {
-      data.push(generateData());
-    }
-    return data;
-  }
+]
 
 
-  // Create axes
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
-  var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
-    maxDeviation: 0,
-    baseInterval: {
-      timeUnit: "day",
-      count: 1
-    },
-    renderer: am5xy.AxisRendererX.new(root, {
-      minorGridEnabled: true,
-      minorLabelsEnabled: true
-    }),
-    tooltip: am5.Tooltip.new(root, {})
-  }));
+var root = am5.Root.new("chartdiv");
 
-  xAxis.set("minorDateFormats", {
-    "day": "dd",
-    "month": "MM"
-  });
+var myTheme = am5.Theme.new(root);
+
+myTheme.rule("InterfaceColors").setAll({
+  primaryButton: am5.color(0xc83830),
+  primaryButtonHover: am5.Color.lighten(am5.color(0xc83830), 0.2),
+  primaryButtonDown: am5.Color.lighten(am5.color(0xc83830), -0.2),
+  primaryButtonActive: am5.color(0xd9cec8),
+});
 
 
-  var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
-    renderer: am5xy.AxisRendererY.new(root, {})
-  }));
+myTheme.rule("Label").setAll({
+  fontSize: "0.8em"
+});
 
+root.setThemes([am5themes_Animated.new(root), myTheme]);
 
-  // Add series
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-  var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-    name: "Series",
-    xAxis: xAxis,
-    yAxis: yAxis,
-    valueYField: "value",
-    valueXField: "date",
-    fill: mainColor,
-    stroke: mainColor,
-    tooltip: am5.Tooltip.new(root, {
-      labelText: "{valueY}"
-    })
-  }));
+var chart = root.container.children.push(am5map.MapChart.new(root, {
+  projection: am5map.geoMercator()
+}));
 
-  series.columns.template.setAll({
-    strokeOpacity: 0,
-    cornerRadiusTL: 10,
-    cornerRadiusTR: 10,
-    width: am5.percent(40)
+var graticuleSeries = chart.series.unshift(
+  am5map.GraticuleSeries.new(root, {
+    step: 10
   })
+);
+
+graticuleSeries.mapLines.template.set("strokeOpacity", 0.05)
 
 
-  // Add scrollbar
-  // https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
-  var scrollbar = chart.set("scrollbarX", am5.Scrollbar.new(root, {
-    orientation: "horizontal"
-  }));
+var cont = chart.children.push(am5.Container.new(root, {
+  layout: root.horizontalLayout,
+  x: am5.percent(15),
+  centerX: 0,
+  y: am5.percent(100),
+  dy: -40
+}));
 
-  chart.bottomAxesContainer.children.push(scrollbar);
+// Add labels and controls
+cont.children.push(am5.Label.new(root, {
+  centerY: am5.p50,
+  text: "Map"
+}));
 
+var switchButton = cont.children.push(am5.Button.new(root, {
+  themeTags: ["switch"],
+  centerY: am5.p50,
+  icon: am5.Circle.new(root, {
+    themeTags: ["icon"]
+  })
+}));
 
-  var data = generateDatas(30);
-  series.data.setAll(data);
+switchButton.on("active", function () {
+  if (!switchButton.get("active")) {
+    chart.set("projection", am5map.geoMercator());
+    chart.set("panY", "translateY");
+    chart.set("rotationY", 0);
+    polygonSeries.set("exclude", ["AQ"]);
+    
+  } else {
+    chart.set("projection", am5map.geoOrthographic());
+    chart.set("panY", "rotateY")
+    chart.set("panX", "rotateX");
+    polygonSeries.set("exclude", []);
+    chart.animate({ key: "rotationX", to: chart.get("rotationX") + 360, duration: 15000, easing: am5.ease.inOut(am5.ease.cubic) });
+  }
+});
 
-
-  // Make stuff animate on load
-  // https://www.amcharts.com/docs/v5/concepts/animations/
-  series.appear(1000);
-  chart.appear(1000, 100);
-
-  xAxis.set("start", 0.5);
-}
-
-
-
-function makeMapChart() {
-
-  var data = [
-    {
-      "id": "CN",
-      "initial": 34,
-      "adjusted": 125
-    },
-    {
-      "id": "AT",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "BE",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "BG",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "HR",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "CY",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "CZ",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "DK",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "EE",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "FI",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "FR",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "DE",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "GR",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "HU",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "IE",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "IT",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "LV",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "LT",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "LU",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "MT",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "NL",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "PL",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "PT",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "RO",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "SK",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "SI",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "ES",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "SE",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "VN",
-      "initial": 46,
-      "adjusted": 10
-    },
-    {
-      "id": "TW",
-      "initial": 32,
-      "adjusted": 10
-    },
-    {
-      "id": "JP",
-      "initial": 24,
-      "adjusted": 10
-    },
-    {
-      "id": "IN",
-      "initial": 26,
-      "adjusted": 10
-    },
-    {
-      "id": "TH",
-      "initial": 36,
-      "adjusted": 10
-    },
-    {
-      "id": "CH",
-      "initial": 31,
-      "adjusted": 10
-    },
-    {
-      "id": "ID",
-      "initial": 32,
-      "adjusted": 10
-    },
-    {
-      "id": "MY",
-      "initial": 24,
-      "adjusted": 10
-    },
-    {
-      "id": "KH",
-      "initial": 49,
-      "adjusted": 10
-    },
-    {
-      "id": "GB",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "ZA",
-      "initial": 30,
-      "adjusted": 10
-    },
-    {
-      "id": "BR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BD",
-      "initial": 37,
-      "adjusted": 10
-    },
-    {
-      "id": "SG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "IL",
-      "initial": 17,
-      "adjusted": 10
-    },
-    {
-      "id": "PH",
-      "initial": 17,
-      "adjusted": 10
-    },
-    {
-      "id": "CL",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AU",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "PK",
-      "initial": 29,
-      "adjusted": 10
-    },
-    {
-      "id": "TR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "LK",
-      "initial": 44,
-      "adjusted": 10
-    },
-    {
-      "id": "CO",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "PE",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "NI",
-      "initial": 18,
-      "adjusted": 10
-    },
-    {
-      "id": "NO",
-      "initial": 15,
-      "adjusted": 10
-    },
-    {
-      "id": "CR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "JO",
-      "initial": 20,
-      "adjusted": 10
-    },
-    {
-      "id": "DO",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AE",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "NZ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "EC",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GT",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "HN",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MG",
-      "initial": 47,
-      "adjusted": 10
-    },
-    {
-      "id": "MM",
-      "initial": 44,
-      "adjusted": 10
-    },
-    {
-      "id": "TN",
-      "initial": 28,
-      "adjusted": 10
-    },
-    {
-      "id": "KZ",
-      "initial": 27,
-      "adjusted": 10
-    },
-    {
-      "id": "RS",
-      "initial": 37,
-      "adjusted": 10
-    },
-    {
-      "id": "EG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SA",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SV",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BW",
-      "initial": 37,
-      "adjusted": 10
-    },
-    {
-      "id": "TT",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MA",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "DZ",
-      "initial": 30,
-      "adjusted": 10
-    },
-    {
-      "id": "OM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "UY",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BS",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "LS",
-      "initial": 50,
-      "adjusted": 10
-    },
-    {
-      "id": "UA",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BH",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "QA",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MU",
-      "initial": 40,
-      "adjusted": 10
-    },
-    {
-      "id": "FJ",
-      "initial": 32,
-      "adjusted": 10
-    },
-    {
-      "id": "IS",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KE",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "LI",
-      "initial": 37,
-      "adjusted": 10
-    },
-    {
-      "id": "GY",
-      "initial": 38,
-      "adjusted": 10
-    },
-    {
-      "id": "HT",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BA",
-      "initial": 35,
-      "adjusted": 10
-    },
-    {
-      "id": "NG",
-      "initial": 14,
-      "adjusted": 10
-    },
-    {
-      "id": "NA",
-      "initial": 21,
-      "adjusted": 10
-    },
-    {
-      "id": "BO",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "PA",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "VE",
-      "initial": 15,
-      "adjusted": 10
-    },
-    {
-      "id": "MK",
-      "initial": 33,
-      "adjusted": 10
-    },
-    {
-      "id": "ET",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GH",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MD",
-      "initial": 31,
-      "adjusted": 10
-    },
-    {
-      "id": "AO",
-      "initial": 32,
-      "adjusted": 10
-    },
-    {
-      "id": "JM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MZ",
-      "initial": 16,
-      "adjusted": 10
-    },
-    {
-      "id": "PY",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "ZM",
-      "initial": 17,
-      "adjusted": 10
-    },
-    {
-      "id": "LB",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CD",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CI",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TZ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "IQ",
-      "initial": 39,
-      "adjusted": 10
-    },
-    {
-      "id": "GE",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SN",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AZ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CM",
-      "initial": 11,
-      "adjusted": 10
-    },
-    {
-      "id": "UG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AL",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "NP",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GA",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KW",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BZ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "PG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MW",
-      "initial": 17,
-      "adjusted": 10
-    },
-    {
-      "id": "LR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "VG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "ZW",
-      "initial": 18,
-      "adjusted": 10
-    },
-    {
-      "id": "BJ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BB",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MC",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "UZ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "DJ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "PF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KY",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CW",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "VU",
-      "initial": 22,
-      "adjusted": 10
-    },
-    {
-      "id": "RW",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SL",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MN",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SZ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MH",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "PM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KN",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GD",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SD",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TC",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AW",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "ME",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KG",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "YE",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "VC",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "NE",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "LC",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "NR",
-      "initial": 30,
-      "adjusted": 10
-    },
-    {
-      "id": "GQ",
-      "initial": 13,
-      "adjusted": 10
-    },
-    {
-      "id": "LY",
-      "initial": 31,
-      "adjusted": 10
-    },
-    {
-      "id": "WS",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GN",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TL",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MS",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TD",
-      "initial": 13,
-      "adjusted": 10
-    },
-    {
-      "id": "ML",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MV",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TJ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CV",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BI",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GP",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "BT",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MQ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TO",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "MR",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "DM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CX",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AD",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SB",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "YT",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "AI",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CC",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "ER",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "CK",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SS",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KM",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "KI",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "NF",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GI",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TV",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "IO",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "TK",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "GW",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "SJ",
-      "initial": 10,
-      "adjusted": 10
-    },
-    {
-      "id": "RE",
-      "initial": 10,
-      "adjusted": 10
-    }
-  ]
-
-
-  var root = am5.Root.new("mapdiv");
-
-  var myTheme = am5.Theme.new(root);
-
-  myTheme.rule("InterfaceColors").setAll({
-    primaryButton: am5.color(0xc83830),
-    primaryButtonHover: am5.Color.lighten(am5.color(0xc83830), 0.2),
-    primaryButtonDown: am5.Color.lighten(am5.color(0xc83830), -0.2),
-    primaryButtonActive: am5.color(0xd9cec8),
-  });
-
-
-  myTheme.rule("Label").setAll({
-    fontSize: "0.8em"
-  });
-
-  root.setThemes([am5themes_Animated.new(root), myTheme]);
-  
-  var chart = root.container.children.push(am5map.MapChart.new(root, {
-    projection: am5map.geoNaturalEarth1()
-  }));
-
-  var graticuleSeries = chart.series.unshift(
-    am5map.GraticuleSeries.new(root, {
-      step: 10
-    })
-  );
-
-  graticuleSeries.mapLines.template.setAll({
-    strokeOpacity: 0.05
-  });
-
-  var cont = chart.children.push(am5.Container.new(root, {
-    layout: root.horizontalLayout,
-    centerX: 0,
-    y: am5.percent(100),
-    dy: -40
-  }));
-
-  // Add labels and controls
-  cont.children.push(am5.Label.new(root, {
+cont.children.push(
+  am5.Label.new(root, {
     centerY: am5.p50,
-    text: "Map"
-  }));
+    text: "Globe"
+  })
+);
 
-  var switchButton = cont.children.push(am5.Button.new(root, {
-    themeTags: ["switch"],
+
+// proposed switch button
+
+
+var cont2 = chart.children.push(am5.Container.new(root, {
+  layout: root.horizontalLayout,
+  x: am5.percent(85),
+  centerX: am5.p100,
+  y: am5.percent(100),
+  dy: -40
+}));
+
+// Add labels and controls
+cont2.children.push(am5.Label.new(root, {
+  centerY: am5.p50,
+  text: "Threatened"
+}));
+
+var switchButton2 = cont2.children.push(am5.Button.new(root, {
+  themeTags: ["switch"],
+  centerY: am5.p50,
+  icon: am5.Circle.new(root, {
+    themeTags: ["icon"]
+  })
+}));
+
+switchButton2.on("active", function () {
+  if (!switchButton2.get("active")) {
+    polygonSeries.set("valueField", "threatened");
+    polygonSeries.data.setAll(data);
+
+  } else {
+    polygonSeries.set("valueField", "updated");    
+    polygonSeries.data.setAll(data);
+  }
+});
+
+cont2.children.push(
+  am5.Label.new(root, {
     centerY: am5.p50,
-    icon: am5.Circle.new(root, {
-      themeTags: ["icon"]
-    })
-  }));
+    text: "Updated"
+  })
+);
 
-  switchButton.on("active", function () {
-    if (!switchButton.get("active")) {
-      chart.set("projection", am5map.geoNaturalEarth1());
-      chart.set("panY", "translateY");
-      chart.set("rotationY", 0);
-      polygonSeries.set("exclude", ["AQ"]);
+var polygonSeries = chart.series.push(
+  am5map.MapPolygonSeries.new(root, {
+    geoJSON: am5geodata_worldLow,
+    valueField: "threatened",
+    calculateAggregates: true,
+    exclude: ["AQ"]
+  })
+);
 
-    } else {
-      chart.set("projection", am5map.geoOrthographic());
-      chart.set("panY", "rotateY")
-      chart.set("panX", "rotateX");
-      polygonSeries.set("exclude", []);
-      chart.animate({ key: "rotationX", to: chart.get("rotationX") + 360, duration: 15000, easing: am5.ease.inOut(am5.ease.cubic) });
-    }
-  });
+polygonSeries.mapPolygons.template.events.on("pointerover", function (ev) {
+  heatLegend.showValue(ev.target.dataItem.get("value"));
+});
 
-  cont.children.push(
-    am5.Label.new(root, {
-      centerY: am5.p50,
-      text: "Globe"
-    })
-  );
+polygonSeries.set("heatRules", [{
+  target: polygonSeries.mapPolygons.template,
+  dataField: "value",
+  min: am5.color(0xd3a29f),
+  max: am5.color(0x6f0600),
+  key: "fill"
+}]);
 
+polygonSeries.mapPolygons.template.setAll({
+  tooltipText: "{name} {value}%",
+  fill: polygonColor,
+  stroke: am5.color(0xffffff)
+});
 
-  // proposed switch button
-
-
-  var cont2 = chart.children.push(am5.Container.new(root, {
-    layout: root.horizontalLayout,
-    y: 40
-  }));
-
-  // Add labels and controls
-  cont2.children.push(am5.Label.new(root, {
-    centerY: am5.p50,
-    text: "Initial"
-  }));
-
-  var switchButton2 = cont2.children.push(am5.Button.new(root, {
-    themeTags: ["switch"],
-    centerY: am5.p50,
-    icon: am5.Circle.new(root, {
-      themeTags: ["icon"]
-    })
-  }));
-
-  switchButton2.on("active", function () {
-    if (!switchButton2.get("active")) {
-      polygonSeries.set("valueField", "initial");
-      polygonSeries.data.setAll(data);
-
-    } else {
-      polygonSeries.set("valueField", "adjusted");
-      polygonSeries.data.setAll(data);
-    }
-  });
-
-  cont2.children.push(
-    am5.Label.new(root, {
-      centerY: am5.p50,
-      text: "adjusted"
-    })
-  );
-
-  var polygonSeries = chart.series.push(
-    am5map.MapPolygonSeries.new(root, {
-      geoJSON: am5geodata_worldLow,
-      valueField: "initial",
-      calculateAggregates: true,
-      exclude: ["AQ"]
-    })
-  );
-
-  polygonSeries.mapPolygons.template.events.on("pointerover", function (ev) {
-    heatLegend.showValue(ev.target.dataItem.get("value"));
-  });
-
-  polygonSeries.set("heatRules", [{
-    target: polygonSeries.mapPolygons.template,
-    dataField: "value",
-    min: am5.color(0xd3a29f),
-    max: am5.color(0x6f0600),
-    key: "fill"
-  }]);
-
-  polygonSeries.mapPolygons.template.setAll({
-    tooltipText: "{name} {value}%",
-    fill: secondaryColor,
-    stroke: am5.color(0xffffff)
-  });
-
-  polygonSeries.data.setAll(data);
+polygonSeries.data.setAll(data);
 
 
-  var heatLegend = chart.children.push(am5.HeatLegend.new(root, {
-    orientation: "vertical",
-    startColor: am5.color(0xd3a29f),
-    endColor: am5.color(0x6f0600),
-    startText: "Lowest",
-    endText: "Highest",
-    stepCount: 8,
-    x: am5.p100,
-    centerX: am5.p100,
-    paddingRight: 20,
-    paddingTop: 20,
-    paddingBottom: 20
-  }));
+var heatLegend = chart.children.push(am5.HeatLegend.new(root, {
+  orientation: "vertical",
+  startColor: am5.color(0xd3a29f),
+  endColor: am5.color(0x6f0600),
+  startText: "Lowest",
+  endText: "Highest",
+  stepCount: 8,
+  x: am5.p100,
+  centerX: am5.p100,
+  paddingRight: 20,
+  paddingTop: 20,
+  paddingBottom: 20
+}));
 
-  heatLegend.startLabel.setAll({
-    fontSize: 12,
-    fill: heatLegend.get("startColor")
-  });
+heatLegend.startLabel.setAll({
+  fontSize: 12,
+  fill: heatLegend.get("startColor")
+});
 
-  heatLegend.endLabel.setAll({
-    fontSize: 12,
-    fill: heatLegend.get("endColor")
-  });
+heatLegend.endLabel.setAll({
+  fontSize: 12,
+  fill: heatLegend.get("endColor")
+});
 
-  // change this to template when possible
-  polygonSeries.events.on("datavalidated", function () {
-    heatLegend.set("startValue", polygonSeries.getPrivate("valueLow"));
-    heatLegend.set("endValue", polygonSeries.getPrivate("valueHigh"));
-  });
+// change this to template when possible
+polygonSeries.events.on("datavalidated", function () {
+  heatLegend.set("startValue", polygonSeries.getPrivate("valueLow"));
+  heatLegend.set("endValue", polygonSeries.getPrivate("valueHigh"));
+});
 
-  chart.appear(2000);
-}
+
+var title = chart.children.push(am5.Label.new(root, {
+  text: "Trump's tariffs on world countries",
+  fontSize: 20,
+  x: am5.percent(50),
+  centerX: am5.p50,
+  y: 40
+}));

@@ -1,5 +1,5 @@
 body {
-  background-color: #000120;
+  background-color:wheat;
   color: aliceblue;
 }
 
@@ -11,6 +11,11 @@ body {
   font-display: swap;
 }
 
+.hero {
+  background-color: #000120;
+  font-size: 'Doctor Glitch', sans-serif;
+}
+
 h1 {
   font-family: 'Doctor Glitch', sans-serif;
   font-size: 3em;
@@ -18,28 +23,7 @@ h1 {
   text-align: center;
 }
 
-#mapdiv {
+#chartdiv {
   width: 100%;
-  height: 400px;
-  clear: left;
+  height: 650px;
 }
-#columndiv {
-  width: 100%;
-  height: 300px;
-  clear: left;
-}
-#piediv {
-  width: 25%;
-  height: 220px;
-  float: left;
-}      
-#gaugediv {
-  width: 25%;
-  height: 220px;
-  float: left
-}
-#linediv {
-  width: 50%;
-  height: 220px;
-  float: left
-}   
