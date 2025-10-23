@@ -1,0 +1,1082 @@
+[
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "Agent Tesla",
+    "Pourcentage": "29%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "Formbook",
+    "Pourcentage": "18%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "14%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "Vidar",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "NanoCore",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "AZORult",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Global",
+    "Type de malware": "Other",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "Formbook",
+    "Pourcentage": "25%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "Agent Tesla",
+    "Pourcentage": "21%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "20%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "Vidar",
+    "Pourcentage": "11%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "Predator",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "Kpot",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "Americas",
+    "Type de malware": "Other",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Agent Tesla",
+    "Pourcentage": "31%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Formbook",
+    "Pourcentage": "18%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "14%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Vidar",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "NanoCore",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "AZORult",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Other",
+    "Pourcentage": "18%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "Agent Tesla",
+    "Pourcentage": "32%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "Formbook",
+    "Pourcentage": "17%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "Vidar",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "NanoCore",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "AZORult",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2020,
+    "Zone géographique": "APAC",
+    "Type de malware": "Other",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "Formbook",
+    "Pourcentage": "38%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "13%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "9%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "Vidar",
+    "Pourcentage": "9%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "NanoCore",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Global",
+    "Type de malware": "Other",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "Formbook",
+    "Pourcentage": "39%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "18%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "Vidar",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "RedLine Stealer",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "Americas",
+    "Type de malware": "Other",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Formbook",
+    "Pourcentage": "42%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "14%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "13%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "9%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Vidar",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Snake Keylogger",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Other",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "Formbook",
+    "Pourcentage": "33%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "18%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "Vidar",
+    "Pourcentage": "11%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "NanoCore",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2021,
+    "Zone géographique": "APAC",
+    "Type de malware": "Other",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "35%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "Formbook",
+    "Pourcentage": "20%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "SnakeKeylogger",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "Lokibot",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "Vidar",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "Pony",
+    "Pourcentage": "1%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Global",
+    "Type de malware": "Other",
+    "Pourcentage": "11%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "29%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "Formbook",
+    "Pourcentage": "22%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "SnakeKeylogger",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "Lokibot",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "Vidar",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "RedLine Stealer",
+    "Pourcentage": "2%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "Americas",
+    "Type de malware": "Other",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "38%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Formbook",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "SnakeKeylogger",
+    "Pourcentage": "15%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Lokibot",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Vidar",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Xloader",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "EMEA",
+    "Type de malware": "Other",
+    "Pourcentage": "1%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "35%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "Formbook",
+    "Pourcentage": "21%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "SnakeKeylogger",
+    "Pourcentage": "17%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "Lokibot",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "Vidar",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "Pony",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2022,
+    "Zone géographique": "APAC",
+    "Type de malware": "Other",
+    "Pourcentage": "1%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "20%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "FormBook",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Vidar",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Other",
+    "Pourcentage": "37%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "20%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "FormBook",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Vidar",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Other",
+    "Pourcentage": "40%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "FormBook",
+    "Pourcentage": "21%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Vidar",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "3%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Other",
+    "Pourcentage": "23%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "22%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "FormBook",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "11%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Vidar",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Other",
+    "Pourcentage": "33%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "20%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "FormBook",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Vidar",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Global",
+    "Type de malware": "Other",
+    "Pourcentage": "37%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "20%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "FormBook",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Vidar",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "Americas",
+    "Type de malware": "Other",
+    "Pourcentage": "40%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "FormBook",
+    "Pourcentage": "21%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "19%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Vidar",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "3%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Other",
+    "Pourcentage": "23%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "22%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "FormBook",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "LokiBot",
+    "Pourcentage": "11%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Raccoon",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Vidar",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2023,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Other",
+    "Pourcentage": "33%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "FakeUpdates",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "Remcos",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "Formbook",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "Androxgh0st",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "AsyncRAT",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "CloudEyE",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "Lumma",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "NJRAT",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Global",
+    "Type de malware": "Nanocore",
+    "Pourcentage": "3%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "FakeUpdates",
+    "Pourcentage": "17%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "15%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "Androxgh0st",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "Remcos",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "Formbook",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "AsyncRAT",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "Lumma",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "NJRAT",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "Mirai",
+    "Pourcentage": "2%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "Americas",
+    "Type de malware": "Darkgate",
+    "Pourcentage": "2%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "FakeUpdates",
+    "Pourcentage": "16%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "12%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Remcos",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "CloudEyE",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Formbook",
+    "Pourcentage": "9%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "AsyncRAT",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Androxgh0st",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Lumma",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "NJRAT",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "EMEA (Europe, Middle East & Africa)",
+    "Type de malware": "Nanocore",
+    "Pourcentage": "4%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "FakeUpdates",
+    "Pourcentage": "14%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "AsyncRAT",
+    "Pourcentage": "10%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Remcos",
+    "Pourcentage": "9%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Androxgh0st",
+    "Pourcentage": "9%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Formbook",
+    "Pourcentage": "8%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "AgentTesla",
+    "Pourcentage": "7%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Lumma",
+    "Pourcentage": "6%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "NJRAT",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Ramnit",
+    "Pourcentage": "5%"
+  },
+  {
+    "Année": 2024,
+    "Zone géographique": "APAC (Asia Pacific)",
+    "Type de malware": "Mirai",
+    "Pourcentage": "5%"
+  }
+]
