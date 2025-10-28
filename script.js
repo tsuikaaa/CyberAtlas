@@ -13,23 +13,49 @@
 var bulletColor = am5.color(0xc83830);
 var polygonColor = am5.color(0xd9cec8);
 
-var data = [
-  {
-    "id": "APAC",
-    "threatened": 38,
-    "updated": 20
-  },
-  {
-    "id": "AMERICAS",
-    "threatened": 25,
-    "updated": 15
-  },
-  {
-    "id": "EMEA",
-    "threatened": 30,
-    "updated": 18
-  }
-];
+// ---------------------------------------------
+// Chargement dynamique depuis data.json
+// ---------------------------------------------
+var data = [];
+
+fetch('data.json')
+  .then(response => response.json())
+  .then(json => {
+    // On choisit l'année à afficher (tu peux changer ici)
+    const selectedYear = 2024;
+
+    // On regroupe les données par zone géographique
+    const zones = ["Global", "Americas", "EMEA (Europe, Middle East & Africa)", "APAC (Asia Pacific)"];
+
+    // Pour chaque zone, on calcule la moyenne des pourcentages
+    data = zones.map(zone => {
+      const zoneData = json.filter(item => item["Année"] === selectedYear && item["Zone géographique"] === zone);
+
+      // On calcule la moyenne du pourcentage
+      const avg = zoneData.reduce((acc, cur) => acc + parseFloat(cur["Pourcentage"]), 0) / zoneData.length;
+
+      // On attribue un code pays approximatif pour chaque zone (juste pour le visuel sur le globe)
+      let id;
+      switch (zone) {
+        case "Global": id = "CN"; break; // Chine = symbole global
+        case "Americas": id = "US"; break;
+        case "EMEA (Europe, Middle East & Africa)": id = "FR"; break;
+        case "APAC (Asia Pacific)": id = "JP"; break;
+        default: id = "US";
+      }
+
+      return {
+        id: id,
+        threatened: avg,
+        updated: avg // tu peux mettre une autre valeur si tu veux une autre mesure
+      };
+    });
+
+    // Mise à jour du globe avec les données calculées
+    polygonSeries.data.setAll(data);
+  })
+  .catch(err => console.error("Erreur lors du chargement du JSON :", err));
+
 
 
 var root = am5.Root.new("chartdiv");
@@ -214,7 +240,7 @@ polygonSeries.events.on("datavalidated", function () {
 
 
 var title = chart.children.push(am5.Label.new(root, {
-  text: "Trump's tariffs on world countries",
+  text: "CyberSecurityreport ( Maleware)",
   fontSize: 20,
   x: am5.percent(50),
   centerX: am5.p50,
