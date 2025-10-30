@@ -1,5 +1,13 @@
 [
   {
+    "zones": {
+      "Global": ["US","CA","MX","GT","BZ","HN","SV","NI","CR","PA","CU","DO","HT","JM","PR","BR","AR","CL","CO","PE","VE","EC","BO","PY","UY","SR","GY","TT","BS","BB","KN","AG","LC","VC","GD","DM","FR","DE","GB","ES","IT","BE","NL","CH","AT","PT","SE","NO","DK","FI","PL","CZ","HU","RO","BG","GR","IE","IS","SI","SK","HR","RS","BA","ME","AL","MK","EE","LV","LT","MT","CY","LU","MD","SA","AE","IL","JO","LB","SY","IQ","IR","KW","QA","BH","OM","YE","TR","ZA","NG","EG","MA","DZ","TN","KE","GH","ET","SN","TZ","UG","ZM","ZW","BW","NA","RW","AO","MZ","CM","CI","LY","SD","ML","NE","MR","BF","TG","BJ","GA","GN","SL","LR","CV","KM","DJ","ER","SZ","LS","MG","MW","SC","SO","TD","CF","CG","CD","GW","GQ","ST","MU","CN","JP","KR","KP","MN","TW","HK","MO","ID","TH","PH","MY","VN","SG","MM","KH","LA","BN","TL","AU","NZ","PG","FJ","WS","TO","VU","KI","FM","PW","MH","SB","TV","NR"],
+      "Americas": ["US","CA","MX","GT","BZ","HN","SV","NI","CR","PA","CU","DO","HT","JM","PR","BR","AR","CL","CO","PE","VE","EC","BO","PY","UY","SR","GY","TT","BS","BB","KN","AG","LC","VC","GD","DM"],
+      "EMEA": ["FR","DE","GB","ES","IT","BE","NL","CH","AT","PT","SE","NO","DK","FI","PL","CZ","HU","RO","BG","GR","IE","IS","SI","SK","HR","RS","BA","ME","AL","MK","EE","LV","LT","MT","CY","LU","MD","SA","AE","IL","JO","LB","SY","IQ","IR","KW","QA","BH","OM","YE","TR","ZA","NG","EG","MA","DZ","TN","KE","GH","ET","SN","TZ","UG","ZM","ZW","BW","NA","RW","AO","MZ","CM","CI","LY","SD","ML","NE","MR","BF","TG","BJ","GA","GN","SL","LR","CV","KM","DJ","ER","SZ","LS","MG","MW","SC","SO","TD","CF","CG","CD","GW","GQ","ST","MU"],
+      "APAC": ["CN","JP","KR","KP","MN","TW","HK","MO","ID","TH","PH","MY","VN","SG","MM","KH","LA","BN","TL","AU","NZ","PG","FJ","WS","TO","VU","KI","FM","PW","MH","SB","TV","NR"]
+    }
+  },
+  {
     "Année": 2020,
     "Zone géographique": "Global",
     "Type de malware": "Agent Tesla",
