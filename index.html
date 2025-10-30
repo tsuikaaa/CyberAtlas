@@ -7,29 +7,37 @@
   <title>CYBER ATLAS</title>
 </head>
 <body>
-    <div class="hero">
-        <h1>CYBER ATLAS</h1>
-        <div class="hero-content">
-        <p>Bienvenue dans le monde invisible de la cybercriminalité. Nous avons plongé dans les six pays les plus touchés pour décoder les attaques, analyser leur fréquence et mesurer leur impact. Chaque donnée raconte une histoire, chaque chiffre révèle une menace.</p>
-        <p><em>Mais restez vigilant… dans ce monde, personne n’est jamais totalement à l’abri.</em></p> 
-        </div>
+  <div class="hero">
+    <h1>CYBER ATLAS</h1>
+    <div class="hero-content">
+      <p>Bienvenue dans le monde invisible de la cybercriminalité. Nous avons plongé dans les six pays les plus touchés pour décoder les attaques, analyser leur fréquence et mesurer leur impact. Chaque donnée raconte une histoire, chaque chiffre révèle une menace.</p>
+      <p><em>Mais restez vigilant… dans ce monde, personne n’est jamais totalement à l’abri.</em></p>
     </div>
+  </div>
 
+  <div class="year-toggle">
+    <button class="year-btn" data-year="2020">2020</button>
+    <button class="year-btn" data-year="2021">2021</button>
+    <button class="year-btn" data-year="2022">2022</button>
+    <button class="year-btn" data-year="2023">2023</button>
+    <button class="year-btn" data-year="2024">2024</button>
+  </div>
 
-    <div class="year-toggle">
-  <button class="year-btn" data-year="2020">2020</button>
-  <button class="year-btn" data-year="2021">2021</button>
-  <button class="year-btn" data-year="2022">2022</button>
-  <button class="year-btn" data-year="2023">2023</button>
-  <button class="year-btn" data-year="2024">2024</button>
-</div>
+  <!-- 🔹 Sélecteur de type de malware -->
+  <div class="malware-filter">
+    <label for="malwareSelect">Type de malware :</label>
+    <select id="malwareSelect">
+      <option value="all">Tous</option>
+    </select>
+  </div>
 
   <!-- 🔹 Librairies amCharts -->
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-<div id="chartdiv"></div>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <div id="chartdiv"></div>
 
   <script src="script.js"></script>
 </body>
