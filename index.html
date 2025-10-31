@@ -15,29 +15,35 @@
     </div>
   </div>
 
-  <div class="year-toggle">
-    <button class="year-btn" data-year="2020">2020</button>
-    <button class="year-btn" data-year="2021">2021</button>
-    <button class="year-btn" data-year="2022">2022</button>
-    <button class="year-btn" data-year="2023">2023</button>
-    <button class="year-btn" data-year="2024">2024</button>
+  <!-- Contrôles indépendants -->
+  <div class="controls">
+    <div class="year-toggle">
+      <button class="year-btn" data-year="2020">2020</button>
+      <button class="year-btn" data-year="2021">2021</button>
+      <button class="year-btn" data-year="2022">2022</button>
+      <button class="year-btn" data-year="2023">2023</button>
+      <button class="year-btn" data-year="2024">2024</button>
+    </div>
+
+    <div class="malware-filter">
+      <label for="malwareSelect">Type de malware :</label>
+      <select id="malwareSelect">
+        <option value="all">Tous</option>
+      </select>
+    </div>
+
+    <button id="toggleGlobe" class="globe-btn">Globe</button>
   </div>
 
-  <!-- 🔹 Sélecteur de type de malware -->
-  <div class="malware-filter">
-    <label for="malwareSelect">Type de malware :</label>
-    <select id="malwareSelect">
-      <option value="all">Tous</option>
-    </select>
-  </div>
+  <!-- Carte / Globe dans sa propre div -->
+  <div id="chartdiv"></div>
+  
 
-  <!-- 🔹 Librairies amCharts -->
+  <!-- Librairies amCharts -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-
-  <div id="chartdiv"></div>
 
   <script src="script.js"></script>
 </body>

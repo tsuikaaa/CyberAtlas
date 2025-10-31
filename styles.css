@@ -1,6 +1,8 @@
 body {
-  background-color:wheat;
-  color: aliceblue;
+  background-color: #0a0a1a;
+  color: #00FFFF;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 @font-face {
@@ -13,7 +15,8 @@ body {
 
 .hero {
   background-color: #000120;
-  font-size: 'Doctor Glitch', sans-serif;
+  font-family: 'Doctor Glitch', sans-serif;
+  padding: 20px;
 }
 
 h1 {
@@ -21,10 +24,68 @@ h1 {
   font-size: 3em;
   color: #00FFFF;
   text-align: center;
+  margin: 0 0 10px 0;
 }
 
 #chartdiv {
   width: 100%;
   height: 550px;
+  background-color: #000120;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00FFFF88;
 }
 
+.globe-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  padding: 8px 12px;
+  background-color: #00FFFF;
+  color: #000120;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Doctor Glitch', sans-serif;
+  transition: 0.2s;
+}
+
+.globe-btn:hover {
+  background-color: #00aaaa;
+}
+
+.year-toggle, .malware-filter {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.year-btn {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #222;
+  color: #00FFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Doctor Glitch', sans-serif;
+  transition: 0.2s;
+}
+
+.year-btn.active {
+  background-color: #00FFFF;
+  color: #000120;
+}
+
+.year-btn:hover {
+  background-color: #00aaaa;
+}
+
+.malware-filter select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #00FFFF;
+  background-color: #111;
+  color: #00FFFF;
+  font-family: 'Doctor Glitch', sans-serif;
+}
