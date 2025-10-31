@@ -75,7 +75,6 @@ let rotation = { x: 0, y: 0 };
 const sensitivity = 0.3;
 const friction = 0.95;
 
-// Gestion des événements souris
 root.dom.addEventListener("pointerdown", (ev) => {
   if (!isGlobe) return;
   isDragging = true;
@@ -92,14 +91,12 @@ root.dom.addEventListener("pointermove", (ev) => {
   let dx = ev.clientX - previousMouse.x;
   let dy = ev.clientY - previousMouse.y;
 
-  // Correction : mouvement naturel
   velocity.x = dx * sensitivity;  // haut/bas → inclinaison
-  velocity.y = -dy * sensitivity;  // gauche/droite → rotation
+  velocity.y = -dy * sensitivity; // gauche/droite → rotation
 
   previousMouse = { x: ev.clientX, y: ev.clientY };
 });
 
-// Frame loop
 root.events.on("frameended", () => {
   if (!isGlobe) return;
 
@@ -140,7 +137,7 @@ fetch("data/data.json")
         )
       ].sort();
 
-      malwareSelect.innerHTML = '<option value="all">Tous</option>';
+      malwareSelect.innerHTML = '<option value="all">Global</option>';
       availableMalwares.forEach(m => {
         const opt = document.createElement("option");
         opt.value = m;
@@ -161,20 +158,46 @@ fetch("data/data.json")
           ? filtered
           : filtered.filter(d => d["Type de malware"] === currentMalware);
 
+      // 🔥 Correction : ignorer "Global" si des zones régionales existent
+      const hasRegionalZones = subset.some(d =>
+        ["EMEA", "APAC", "Americas"].includes(d["Zone géographique"])
+      );
+
       const mapData = [];
+      const highlightedZones = new Set();
+
       subset.forEach(item => {
         const zone = item["Zone géographique"];
+        if (hasRegionalZones && zone === "Global") return;
+
         const value = parseFloat(item["Pourcentage"]);
         if (zones[zone]) {
           zones[zone].forEach(countryCode => {
-            mapData.push({ id: countryCode, value: value });
+            mapData.push({ id: countryCode, value });
+            highlightedZones.add(countryCode);
           });
         }
       });
 
       polygonSeries.data.setAll(mapData);
+
+      // Coloration dynamique fluide
+      polygonSeries.mapPolygons.each(polygon => {
+        const pid = polygon.dataItem?.dataContext?.id || polygon.get("id") || null;
+        const targetColor = highlightedZones.has(pid)
+          ? am5.color(0xff66cc)
+          : am5.color(0x111133);
+
+        polygon.animate({
+          key: "fill",
+          to: targetColor,
+          duration: 600,
+          easing: am5.ease.out(am5.ease.cubic)
+        });
+      });
     }
 
+    // === Événements ===
     yearButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         yearButtons.forEach(b => b.classList.remove("active"));
@@ -191,6 +214,7 @@ fetch("data/data.json")
       updateMap();
     });
 
+    // Initialisation
     yearButtons[0].classList.add("active");
     currentYear = yearButtons[0].getAttribute("data-year");
     updateMalwareOptions(currentYear);
