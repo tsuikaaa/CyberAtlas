@@ -58,6 +58,22 @@ let isGlobe = false;
 toggleButton.addEventListener("click", () => {
   isGlobe = !isGlobe;
   chart.set("projection", isGlobe ? am5map.geoOrthographic() : am5map.geoMercator());
+
+  if (isGlobe) {
+  chart.setAll({
+    rotationX: -10, // remonte légèrement le globe
+    rotationY: 0,
+    centerMap: false,
+    panX: "none",
+    panY: "none",
+  });
+} else {
+  chart.setAll({
+    rotationX: 0,
+    rotationY: 0,
+  });
+}
+
   toggleButton.textContent = isGlobe ? "Carte" : "Globe";
 
   chart.setAll({
