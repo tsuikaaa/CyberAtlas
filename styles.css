@@ -33,6 +33,7 @@ h1 {
   background-color: #000120;
   border-radius: 10px;
   box-shadow: 0 0 20px #00FFFF88;
+  position: relative;
 }
 
 .globe-btn {

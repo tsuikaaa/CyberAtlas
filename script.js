@@ -60,28 +60,25 @@ toggleButton.addEventListener("click", () => {
   chart.set("projection", isGlobe ? am5map.geoOrthographic() : am5map.geoMercator());
 
 if (isGlobe) {
-  chart.setAll({
-    projection: am5map.geoOrthographic(),
-    panX: "none",
-    panY: "none",
-    centerMapOnZoomOut: false,
-    marginTop: -80,      // Remonte le cadre supérieur
-    marginBottom: -80    // Remonte le cadre inférieur (optionnel)
-  });
-  
-  // Force le recentrage après un court délai
-  setTimeout(() => {
-    chart.goHome();
-  }, 100);
-  
+    chart.setAll({
+        projection: am5map.geoOrthographic(),
+        panX: "none",
+        panY: "none",
+        centerMapOnZoomOut: false,
+        marginTop: -80,
+        marginBottom: -80,
+        scale: 0.9 // Valeur < 1 réduira le globe, testable entre 0.3 et 1
+    });
+    setTimeout(() => { chart.goHome(); }, 100);
 } else {
-  chart.setAll({
-    projection: am5map.geoMercator(),
-    panX: 0,
-    panY: 0,
-    marginTop: 0,
-    marginBottom: 0
-  });
+    chart.setAll({
+        projection: am5map.geoMercator(),
+        panX: 0,
+        panY: 0,
+        marginTop: 0,
+        marginBottom: 0,
+        scale: 1 // Remet l’échelle normale en mode carte plate
+    });
 }
 
   toggleButton.textContent = isGlobe ? "Carte" : "Globe";
