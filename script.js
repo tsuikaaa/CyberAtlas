@@ -59,18 +59,28 @@ toggleButton.addEventListener("click", () => {
   isGlobe = !isGlobe;
   chart.set("projection", isGlobe ? am5map.geoOrthographic() : am5map.geoMercator());
 
-  if (isGlobe) {
+if (isGlobe) {
   chart.setAll({
-    rotationX: -10, // remonte légèrement le globe
-    rotationY: 0,
-    centerMap: false,
+    projection: am5map.geoOrthographic(),
     panX: "none",
     panY: "none",
+    centerMapOnZoomOut: false,
+    marginTop: -80,      // Remonte le cadre supérieur
+    marginBottom: -80    // Remonte le cadre inférieur (optionnel)
   });
+  
+  // Force le recentrage après un court délai
+  setTimeout(() => {
+    chart.goHome();
+  }, 100);
+  
 } else {
   chart.setAll({
-    rotationX: 0,
-    rotationY: 0,
+    projection: am5map.geoMercator(),
+    panX: 0,
+    panY: 0,
+    marginTop: 0,
+    marginBottom: 0
   });
 }
 
