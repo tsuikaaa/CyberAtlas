@@ -67,7 +67,7 @@ if (isGlobe) {
         centerMapOnZoomOut: false,
         marginTop: -80,
         marginBottom: -80,
-        scale: 0.9 // Valeur < 1 réduira le globe, testable entre 0.3 et 1
+        scale: 0.85 // Valeur < 1 réduira le globe, testable entre 0.3 et 1
     });
     setTimeout(() => { chart.goHome(); }, 100);
 } else {
