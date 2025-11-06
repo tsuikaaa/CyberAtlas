@@ -29,11 +29,26 @@ h1 {
 
 #chartdiv {
   width: 100%;
-  height: 550px;
+  height: 60vh; 
   background-color: #000120;
   border-radius: 10px;
   box-shadow: 0 0 20px #00FFFF88;
+  max-height: 600px;
+  min-height: 350px;
+  padding-bottom: 30px;
 }
+
+.wrapper {
+  width: 700px;
+  aspect-ratio: 1 / 1;
+  margin: 10px 0 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  position: relative;
+  padding: 0;
+}
+
 
 .globe-btn {
   position: absolute;

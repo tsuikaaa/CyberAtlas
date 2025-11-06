@@ -1,4 +1,4 @@
-// === Initialisation de la carte ===
+// Initialisation de la carte
 var root = am5.Root.new("chartdiv");
 root._logo.dispose();
 
@@ -44,51 +44,60 @@ polygonSeries.mapPolygons.template.setAll({
   fill: am5.color(0x111133),
   interactive: false
 });
-
 polygonSeries.mapPolygons.template.states.create("hover", {
   fill: am5.color(0xff0055),
   stroke: am5.color(0xFFFFFF),
   strokeWidth: 1.2
 });
 
-// === Bouton Globe / Carte ===
+// Bouton Globe / Carte
 const toggleButton = document.getElementById("toggleGlobe");
 let isGlobe = false;
+
+function updateGlobeScale() {
+  const chartdiv = document.getElementById("chartdiv");
+  let size = Math.min(window.innerWidth, window.innerHeight);
+  chartdiv.style.width = size + "px";
+  chartdiv.style.height = size + "px";
+  chart.set("scale", 0.97); // Léger retrait pour ne pas couper
+}
+window.addEventListener("resize", updateGlobeScale);
+updateGlobeScale();
 
 toggleButton.addEventListener("click", () => {
   isGlobe = !isGlobe;
   chart.set("projection", isGlobe ? am5map.geoOrthographic() : am5map.geoMercator());
 
-if (isGlobe) {
+  if (isGlobe) {
     chart.setAll({
-        projection: am5map.geoOrthographic(),
-        panX: "none",
-        panY: "none",
-        centerMapOnZoomOut: false,
-        marginTop: -80,
-        marginBottom: -80,
-        scale: 0.85 // Valeur < 1 réduira le globe, testable entre 0.3 et 1
+      projection: am5map.geoOrthographic(),
+      panX: "none",
+      panY: "none",
+      centerMapOnZoomOut: false,
+      marginTop: 0,
+      marginBottom: 0,
+      scale: 0.97
     });
     setTimeout(() => { chart.goHome(); }, 100);
-} else {
+  } else {
     chart.setAll({
-        projection: am5map.geoMercator(),
-        panX: 0,
-        panY: 0,
-        marginTop: 0,
-        marginBottom: 0,
-        scale: 1 // Remet l’échelle normale en mode carte plate
+      projection: am5map.geoMercator(),
+      panX: 0,
+      panY: 0,
+      marginTop: 0,
+      marginBottom: 0,
+      scale: 1
     });
-}
-
+    setTimeout(() => { chart.goHome(); }, 100);
+  }
   toggleButton.textContent = isGlobe ? "Carte" : "Globe";
-
   chart.setAll({
     rotationX: 0,
     rotationY: 0,
     center: [0, 0]
   });
 });
+
 
 // === Rotation automatique + manuelle fluide ===
 let isDragging = false;
