@@ -39,7 +39,8 @@ h1 {
 }
 
 .wrapper {
-  width: 700px;
+  width: 100%;
+  max-width: 600px;
   aspect-ratio: 1 / 1;
   margin: 10px 0 10px 30px;
   display: flex;
