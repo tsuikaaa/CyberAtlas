@@ -238,7 +238,8 @@ subset.forEach(item => {
     const malware = item["Type de malware"];
     const pct = item["Pourcentage"];
     const year = item["Année"];
-    statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques en ${year}</p>`;
+    const zone = item["Zone géographique"];
+    statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques en ${year} dans la zone ${zone}</p>`;
   }
 });
 
