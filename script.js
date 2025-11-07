@@ -59,7 +59,7 @@ function updateGlobeScale() {
   let size = Math.min(window.innerWidth, window.innerHeight);
   chartdiv.style.width = size + "px";
   chartdiv.style.height = size + "px";
-  chart.set("scale", 0.97); // Léger retrait pour ne pas couper
+  chart.set("scale", 0.97); 
 }
 window.addEventListener("resize", updateGlobeScale);
 updateGlobeScale();
@@ -123,8 +123,8 @@ root.dom.addEventListener("pointermove", (ev) => {
   let dx = ev.clientX - previousMouse.x;
   let dy = ev.clientY - previousMouse.y;
 
-  velocity.x = dx * sensitivity;  // haut/bas → inclinaison
-  velocity.y = -dy * sensitivity; // gauche/droite → rotation
+  velocity.x = dx * sensitivity;  
+  velocity.y = -dy * sensitivity;
 
   previousMouse = { x: ev.clientX, y: ev.clientY };
 });
@@ -139,7 +139,7 @@ root.events.on("frameended", () => {
   rotation.y += velocity.y;
 
   if (!isDragging && Math.abs(velocity.x) < 0.01 && Math.abs(velocity.y) < 0.01) {
-    rotation.x += 0.2; // rotation horizontale douce
+    rotation.x += 0.2; 
   }
 
   if (rotation.x > 90) rotation.x = 90;
@@ -170,15 +170,18 @@ fetch("data/data.json")
       ].sort();
 
       malwareSelect.innerHTML = '<option value="all">Global</option>';
-      availableMalwares.forEach(m => {
-        const opt = document.createElement("option");
-        opt.value = m;
-        opt.textContent = m;
-        malwareSelect.appendChild(opt);
-      });
+availableMalwares
+  .filter(m => m !== "Other")
+  .forEach(m => {
+    const opt = document.createElement("option");
+    opt.value = m;
+    opt.textContent = m;
+    malwareSelect.appendChild(opt);
+  });
 
-      currentMalware = "all";
-      malwareSelect.value = "all";
+currentMalware = "all";
+malwareSelect.value = "all";
+
     }
 
     function updateMap() {
@@ -190,7 +193,6 @@ fetch("data/data.json")
           ? filtered
           : filtered.filter(d => d["Type de malware"] === currentMalware);
 
-      // 🔥 Correction : ignorer "Global" si des zones régionales existent
       const hasRegionalZones = subset.some(d =>
         ["EMEA", "APAC", "Americas"].includes(d["Zone géographique"])
       );
@@ -227,6 +229,22 @@ fetch("data/data.json")
           easing: am5.ease.out(am5.ease.cubic)
         });
       });
+
+      // --- Affichage des phrases selon le filtre ---
+      const statsContainer = document.getElementById("malwareStats");
+      statsContainer.innerHTML = "";
+
+     statsContainer.innerHTML = "";
+
+subset.forEach(item => {
+  if (item["Zone géographique"] !== "Global" && item["Zone géographique"] !== "Other") {
+    const malware = item["Type de malware"];
+    const pct = item["Pourcentage"];
+    statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques</p>`;
+  }
+});
+
+
     }
 
     // === Événements ===

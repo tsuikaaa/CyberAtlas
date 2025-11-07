@@ -107,3 +107,23 @@ h1 {
   color: #00FFFF;
   font-family: 'Doctor Glitch', sans-serif;
 }
+
+.main-row {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* Style de la zone stats */
+.malware-stats {
+  margin-left: 40px;
+  background-color: #000120;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00FFFF88;
+  padding: 20px;
+  min-width: 260px;
+  max-width: 350px;
+  color: #00FFFF;
+  font-family: 'Doctor Glitch', sans-serif;
+}
