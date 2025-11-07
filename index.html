@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <title>CYBER ATLAS</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <!-- Contrôles indépendants -->
+  <section class="map">
   <div class="controls">
     <div class="year-toggle">
       <button class="year-btn" data-year="2020">2020</button>
@@ -35,18 +35,16 @@
     <button id="toggleGlobe" class="globe-btn">Globe</button>
   </div>
 
-  <!-- Carte / Globe dans sa propre div -->
 <div class="main-row">
-  <div class="wrapper">
-    <div id="chartdiv"></div>
-  </div>
-  <div class="malware-stats">
-    <h2>Statistiques des Malwares</h2>
-    <div id="malwareStats"></div>
-  </div>
+  <div class="wrapper">
+    <div id="chartdiv"></div>
+  </div>
+  <div class="malware-stats">
+    <h2>Statistiques des Malwares</h2>
+    <div id="malwareStats"></div>
+  </div>
 </div>
-
-  
+</section>
 
   <!-- Librairies amCharts -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -54,6 +52,7 @@
   <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
+  
 </body>
 </html>

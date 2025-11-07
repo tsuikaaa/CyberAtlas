@@ -170,18 +170,15 @@ fetch("data/data.json")
       ].sort();
 
       malwareSelect.innerHTML = '<option value="all">Global</option>';
-availableMalwares
-  .filter(m => m !== "Other")
-  .forEach(m => {
-    const opt = document.createElement("option");
-    opt.value = m;
-    opt.textContent = m;
-    malwareSelect.appendChild(opt);
-  });
+      availableMalwares.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = m;
+        malwareSelect.appendChild(opt);
+      });
 
-currentMalware = "all";
-malwareSelect.value = "all";
-
+      currentMalware = "all";
+      malwareSelect.value = "all";
     }
 
     function updateMap() {
@@ -240,7 +237,8 @@ subset.forEach(item => {
   if (item["Zone géographique"] !== "Global" && item["Zone géographique"] !== "Other") {
     const malware = item["Type de malware"];
     const pct = item["Pourcentage"];
-    statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques</p>`;
+    const year = item["Année"];
+    statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques en ${year}</p>`;
   }
 });
 

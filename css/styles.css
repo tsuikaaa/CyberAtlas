@@ -35,7 +35,9 @@ h1 {
   box-shadow: 0 0 20px #00FFFF88;
   max-height: 600px;
   min-height: 350px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
+  padding-left: 15;
+  margin-left: auto;
 }
 
 .wrapper {
@@ -117,13 +119,14 @@ h1 {
 
 /* Style de la zone stats */
 .malware-stats {
-  margin-left: 40px;
+  margin-left: 50px;
+  margin-top: 10px;
   background-color: #000120;
   border-radius: 10px;
   box-shadow: 0 0 20px #00FFFF88;
   padding: 20px;
-  min-width: 260px;
-  max-width: 350px;
+  width: 100%;
+  max-width: 750px;
   color: #00FFFF;
-  font-family: 'Doctor Glitch', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
