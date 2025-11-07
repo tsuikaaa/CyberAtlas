@@ -36,7 +36,7 @@ h1 {
   max-height: 600px;
   min-height: 350px;
   padding-bottom: 50px;
-  padding-left: 15;
+  padding-left: 15px;
   margin-left: auto;
 }
 
@@ -51,9 +51,6 @@ h1 {
   position: relative;
   padding: 0;
 }
-
-
-
 
 .globe-btn {
   position: absolute;
@@ -75,7 +72,7 @@ h1 {
   background-color: #00aaaa;
 }
 
-.year-toggle, .malware-filter {
+.year-toggle, .malware-filter, .zone-filter {
   text-align: center;
   margin: 15px 0;
 }
@@ -101,7 +98,7 @@ h1 {
   background-color: #00aaaa;
 }
 
-.malware-filter select {
+.malware-filter select, .zone-filter select {
   padding: 5px;
   border-radius: 4px;
   border: 1px solid #00FFFF;
@@ -117,7 +114,6 @@ h1 {
   justify-content: flex-start;
 }
 
-/* Style de la zone stats */
 .malware-stats {
   margin-left: 50px;
   margin-top: 10px;
@@ -129,4 +125,29 @@ h1 {
   max-width: 750px;
   color: #00FFFF;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Scroll pour les phrases malware */
+#malwareStats {
+  max-height: 400px;        /* Hauteur fixe pour Global */
+  overflow-y: auto;         /* Scroll vertical si contenu trop long */
+  padding-right: 10px;      /* Évite que le texte touche le scroll */
+  scrollbar-width: thin;    /* Pour Firefox */
+  scrollbar-color: #00FFFF #000120; /* Couleur du scroll pour Firefox */
+}
+
+/* Scroll Chrome / Edge / Safari */
+#malwareStats::-webkit-scrollbar {
+  width: 8px;
+}
+
+#malwareStats::-webkit-scrollbar-track {
+  background: #000120;
+  border-radius: 5px;
+}
+
+#malwareStats::-webkit-scrollbar-thumb {
+  background-color: #00FFFF;
+  border-radius: 5px;
+  border: 2px solid #000120;
 }
