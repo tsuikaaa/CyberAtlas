@@ -38,7 +38,7 @@ var polygonSeries = chart.series.push(
 );
 
 polygonSeries.mapPolygons.template.setAll({
-  tooltipText: "{name}: {value}%",
+  tooltipText: "{name}",
   stroke: am5.color(0x00FFFF),
   strokeWidth: 0.8,
   fill: am5.color(0x111133),
