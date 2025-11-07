@@ -235,11 +235,17 @@ statsContainer.innerHTML = "";
 if (currentMalware !== "all") {
   subset.forEach(item => {
     if (item["Zone géographique"] !== "Global" && item["Zone géographique"] !== "Other") {
-      const malware = item["Type de malware"];
+      let malware = item["Type de malware"];
       const pct = item["Pourcentage"];
       const year = item["Année"];
       const zone = item["Zone géographique"];
-      statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques en ${year} dans la zone ${zone}.</p>`;
+
+      // Si le malware est "Autre"
+      if (malware === "Autre") {
+        malware = "Un autre type de malware";
+      }
+
+      statsContainer.innerHTML += `<p>${malware} est responsable de ${pct}% des attaques en ${year} dans la zone ${zone}.</p>`;
     }
   });
 }
