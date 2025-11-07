@@ -227,24 +227,24 @@ fetch("data/data.json")
         });
       });
 
-      // --- Affichage des phrases selon le filtre ---
-      const statsContainer = document.getElementById("malwareStats");
-      statsContainer.innerHTML = "";
+// --- Affichage des phrases selon le filtre ---
+const statsContainer = document.getElementById("malwareStats");
+statsContainer.innerHTML = "";
 
-     statsContainer.innerHTML = "";
-
-subset.forEach(item => {
-  if (item["Zone géographique"] !== "Global" && item["Zone géographique"] !== "Other") {
-    const malware = item["Type de malware"];
-    const pct = item["Pourcentage"];
-    const year = item["Année"];
-    const zone = item["Zone géographique"];
-    statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques en ${year} dans la zone ${zone}</p>`;
-  }
-});
-
-
+// Si le filtre sélectionné n'est pas "Global"
+if (currentMalware !== "all") {
+  subset.forEach(item => {
+    if (item["Zone géographique"] !== "Global" && item["Zone géographique"] !== "Other") {
+      const malware = item["Type de malware"];
+      const pct = item["Pourcentage"];
+      const year = item["Année"];
+      const zone = item["Zone géographique"];
+      statsContainer.innerHTML += `<p>${malware} responsable de ${pct}% des attaques en ${year} dans la zone ${zone}.</p>`;
     }
+  });
+}
+
+}
 
     // === Événements ===
     yearButtons.forEach(btn => {
