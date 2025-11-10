@@ -1,4 +1,3 @@
-// amCharts 5 - Top 5 pays avec drapeaux ronds (triés, sans pourcentages)
 am5.ready(function () {
   const root = am5.Root.new("chartdiv");
   root._logo.dispose();
