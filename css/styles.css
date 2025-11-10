@@ -13,6 +13,20 @@ body {
   font-display: swap;
 }
 
+.hero-section {
+  margin-bottom: 30px;
+}
+
+.map-section {
+  padding: 20px 0;
+  border-top: 2px solid #00FFFF22;
+  margin-bottom: 20px;
+}
+
+.chart-section, .malware-stats-section {
+  margin-bottom: 20px;
+}
+
 .hero {
   background-color: #000120;
   font-family: 'Doctor Glitch', sans-serif;
@@ -127,16 +141,14 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Scroll pour les phrases malware */
 #malwareStats {
-  max-height: 400px;        /* Hauteur fixe pour Global */
-  overflow-y: auto;         /* Scroll vertical si contenu trop long */
-  padding-right: 10px;      /* Évite que le texte touche le scroll */
-  scrollbar-width: thin;    /* Pour Firefox */
-  scrollbar-color: #00FFFF #000120; /* Couleur du scroll pour Firefox */
+  max-height: 400px;       
+  overflow-y: auto;        
+  padding-right: 10px;     
+  scrollbar-width: thin;   
+  scrollbar-color: #00FFFF #000120; 
 }
 
-/* Scroll Chrome / Edge / Safari */
 #malwareStats::-webkit-scrollbar {
   width: 8px;
 }

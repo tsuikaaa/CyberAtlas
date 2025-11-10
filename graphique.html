@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/graphique.css" />
+  <title>Top 5 des pays les plus touchés par la cybercriminalité</title>
+</head>
+<body>
+  <div class="cyber-bg" aria-hidden="true"></div>
+
+  <main class="layout">
+    <section class="chart-area">
+      <h1>Top 5 des pays les plus touchés par la cybercriminalité</h1>
+
+      <div class="axis-headers">
+        <span class="axis-y-title">Pays</span>
+      </div>
+
+      <div id="chartdiv"
+           aria-label="Diagramme en barres horizontales : top 5 des pays les plus touchés par la cybercriminalité"></div>
+
+      <span class="axis-x-title">Indice de cybercriminalité (%)</span>
+
+      <p class="source">
+        Source :
+        <a href="https://www.sciencespo.fr/centre-etudes-europeennes/fr/actualites/d-ou-proviennent-les-menaces-cyber/#:~:text=Classement%20des%2050%20premiers%20pays,le%20Nig%C3%A9ria%20et%20la%20Roumanie."
+           target="_blank" rel="noopener">
+          Sciences Po – Centre d’études européennes et de politique comparée (2024)
+        </a>
+      </p>
+    </section>
+
+    <!-- Légende (sans emoji/icônes) -->
+    <aside class="legend-card legend-dark">
+      <h2>Lecture du graphique</h2>
+
+      <p>
+        Ce graphique présente les <strong>pays les plus exposés à la cybercriminalité en 2024</strong>,
+        d’après l’étude comparative internationale du <em>Centre d’études européennes</em> de Sciences Po.
+        L’indice représente la <strong>part relative d’incidents détectés</strong> (attaques, fraudes, activités malveillantes).
+      </p>
+
+      <ul class="bullets no-icons">
+        <li><strong>Russie</strong> — <em>58,39&nbsp;%</em> : pays le plus touché.</li>
+        <li><strong>Ukraine</strong> — <em>36,44&nbsp;%</em> : exposition très élevée.</li>
+        <li><strong>Chine</strong> — <em>27,86&nbsp;%</em> : niveau important d’activité cyber.</li>
+        <li><strong>États-Unis</strong> — <em>25,01&nbsp;%</em> : très ciblés.</li>
+        <li><strong>Nigéria</strong> — <em>21,28&nbsp;%</em> : premier pays africain du Top 5.</li>
+      </ul>
+
+      <div class="tip">
+        Astuce : survole une barre pour afficher le <strong>pourcentage exact</strong>.
+      </div>
+
+      <!-- Nouvelle animation : radar -->
+      <div class="anim-card" aria-hidden="true">
+        <svg class="radar-anim" viewBox="0 0 240 240" role="img">
+          <title>Animation radar</title>
+          <defs>
+            <linearGradient id="radarGrad" x1="0" x2="1">
+              <stop offset="0" stop-color="#00E5FF" />
+              <stop offset="1" stop-color="#9B5DE5" />
+            </linearGradient>
+            <mask id="sectorMask">
+              <rect x="0" y="0" width="240" height="240" fill="black"/>
+              <path id="sector" d="M120,120 L120,10 A110,110 0 0 1 220,120 Z" fill="white"/>
+            </mask>
+          </defs>
+          <circle cx="120" cy="120" r="110" class="radar-ring"></circle>
+          <circle cx="120" cy="120" r="74" class="radar-ring"></circle>
+          <circle cx="120" cy="120" r="38" class="radar-ring"></circle>
+          <g class="sweep">
+            <circle cx="120" cy="120" r="110" fill="url(#radarGrad)" mask="url(#sectorMask)" />
+          </g>
+          <circle cx="120" cy="120" r="4" class="radar-dot"></circle>
+        </svg>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <script src="js/graphique.js"></script>
+</body>
+</html>
