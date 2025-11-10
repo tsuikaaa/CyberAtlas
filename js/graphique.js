@@ -1,7 +1,7 @@
 // amCharts 5 - Top 5 pays avec drapeaux ronds (triés, sans pourcentages)
 am5.ready(function () {
   const root = am5.Root.new("chartdiv");
-  root.setThemes([am5themes_Animated.new(root)]);
+  root._logo.dispose();
 
   // Données (Top 5 du graphique partagé)
   let data = [
