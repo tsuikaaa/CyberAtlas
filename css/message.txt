@@ -304,20 +304,21 @@ p {
 ============================= */
 
 .map-section {
-  padding: 40px 0;
+  margin-top: 1.5rem;
+  padding: 0 1.5rem 2.5rem;
 }
 
 .map {
-  width: 95%;
+  max-width: 1200px;
   margin: 0 auto;
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(155, 93, 229, 0.08));
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 1.5rem;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Toolbar (Globe / Années / Zone) */
+/* Toolbar style inspiré de .map-toolbar */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -325,8 +326,9 @@ p {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
+
   border: 1px solid var(--ring);
-  background: rgba(10, 15, 30, 0.8);
+  background: rgba(10, 15, 30, 0.35);
   padding: 10px 12px;
   border-radius: 12px;
 }
@@ -340,10 +342,10 @@ p {
   border: 1px solid var(--ring);
   border-radius: 10px;
   padding: 8px 10px;
-  cursor: pointer;
 }
 
 /* groupe d'années */
+
 .year-toggle {
   display: flex;
   flex-wrap: wrap;
@@ -352,6 +354,7 @@ p {
 
 .year-btn {
   border-radius: 999px;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   transition:
@@ -360,8 +363,9 @@ p {
     border-color 0.18s ease-out,
     transform 0.08s ease-out;
 
+  /* on garde une base sombre compatible avec la toolbar */
   background: rgba(9, 12, 32, 0.9);
-  border: 1px solid var(--ring);
+  border: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.8rem;
   padding: 0.35rem 0.7rem;
@@ -373,7 +377,7 @@ p {
   transform: translateY(-1px);
 }
 
-/* style actif */
+/* style actif venant de ton 1er snippet */
 .year-btn.active,
 .year-btn[aria-pressed="true"] {
   outline: 2px solid var(--accent);
@@ -384,12 +388,12 @@ p {
 }
 
 /* filtre par zone */
+
 .zone-filter {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   font-size: 0.86rem;
-  color: var(--muted);
 }
 
 .zone-filter label {
@@ -407,6 +411,7 @@ p {
 }
 
 /* bouton globe */
+
 .globe-btn {
   border-radius: 999px;
   border: 1px solid var(--accent);
@@ -416,31 +421,19 @@ p {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  cursor: pointer;
 }
 
 .globe-btn:hover {
   filter: brightness(1.1);
 }
 
-.globe-btn.active {
-  outline: 2px solid var(--accent);
-  box-shadow: 0 0 0 3px rgba(0, 224, 255, 0.15) inset;
-}
-
-/* =========================
-   Layout carte + panneau stats
-   ========================= */
+/* layout carte + panneau stats */
 
 .main-row {
   display: grid;
   grid-template-columns: minmax(0, 2.2fr) minmax(260px, 1.1fr);
   gap: 1.25rem;
-}
-.chart-section {
-  display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement */
-  min-height: 100vh;       /* prend toute la hauteur de l'écran */
 }
 
 .chart-section .wrapper {
@@ -449,22 +442,21 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 0.5rem;
   min-height: 360px;
-  display: flex;
-  justify-content: center; /* centre le chart à l'intérieur du wrapper */
-  align-items: center;
 }
 
-#chartdiv {
+/* ===== Globe / Carte – style encadré sur chartdiv ===== */
+
+.map #chartdiv {
   width: 100%;
-  max-width: 800px; /* optionnel : limite la largeur */
-  height: 430px;
+  height: 430px; /* carte / globe */
+  margin: 20px auto;
   border: 1px solid var(--ring);
   border-radius: 16px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
-
 /* Panneau statistiques malwares */
+
 .malware-stats-section {
   background: rgba(7, 10, 26, 0.94);
   border-radius: 1rem;
@@ -481,7 +473,7 @@ p {
   margin-bottom: 0.25rem;
 }
 
-/* Zone de texte des stats malwares */
+/* combine ton ancien style + scrollbar custom du 1er snippet */
 #malwareStats {
   font-size: 0.85rem;
   color: var(--muted);
@@ -506,19 +498,6 @@ p {
   border-radius: 5px;
   border: 2px solid #050712;
 }
-
-/* Responsive */
-@media (max-width: 900px) {
-  .main-row {
-    grid-template-columns: 1fr;
-  }
-
-  .controls {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
 
 /* =============================
    GLOBAL CYBER BACKGROUND
