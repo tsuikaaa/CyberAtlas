@@ -3,20 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
-  <title>CYBER ATLAS</title>
+  <title>CyberAtlas - Statistiques & Graphiques</title>
+  <link rel="stylesheet" href="css/stylehome.css">
+  <!-- Librairies amCharts nécessaires -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 </head>
+
 <body>
-  <section class="hero-section">
-    <div class="hero">
-      <h1>CYBER ATLAS</h1>
-      <div class="hero-content">
-        <p>Bienvenue dans le monde invisible de la cybercriminalité. Nous avons plongé dans les six pays les plus touchés pour décoder les attaques, analyser leur fréquence et mesurer leur impact. Chaque donnée raconte une histoire, chaque chiffre révèle une menace.</p>
-        <p><em>Mais restez vigilant… dans ce monde, personne n’est jamais totalement à l’abri.</em></p>
-      </div>
+  <!-- ENTÊTE DU SITE -->
+  <header class="entete-site">
+    <div class="conteneur">
+      <a class="logo accent" href="#">CYBERATLAS</a>
+      <nav class="navigation">
+        <a href="#">Accueil</a>
+        <a href="#">À propos</a>
+        <a href="#">Statistiques</a>
+      </nav>
+      <button class="bouton-langue" aria-label="Changer la langue">
+        <span>FR</span>
+        <span>EN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ACCROCHE -->
+  <section class="accroche">
+    <div class="accroche__superposition"></div>
+    <div class="contenu-accroche">
+      <h1 class="titre-accroche">HACKED</h1>
+      <p class="desc-accroche">Panorama de la cybercriminalité mondiale actualisé en temps réel</p>
     </div>
   </section>
 
+  <!-- STATISTIQUES PRINCIPALES -->
+  <section class="section-stats conteneur">
+    <div class="grille-stats">
+      <div class="panneau-stats">
+        <span class="icone-stats"></span>
+        <span class="valeur-stats">798</span>
+        <span class="etiquette-stats">CYBERATTAQUES/JOUR</span>
+      </div>
+      <div class="panneau-stats">
+        <span class="icone-stats"></span>
+        <span class="valeur-stats">534</span>
+        <span class="etiquette-stats">INFECTIONS RANSOMWARE</span>
+      </div>
+      <div class="panneau-stats">
+        <span class="icone-stats"></span>
+        <span class="valeur-stats">883 133</span>
+        <span class="etiquette-stats">VICTIMES EN 2023</span>
+      </div>
+    </div>
+    <div class="source-stats">Source : Statistica, CERT, rapports officiels</div>
+  </section>
+
+ <!-- GLOBE/Carte amCharts -->
   <section class="map-section">
     <div class="map">
       <div class="controls">
@@ -57,20 +102,61 @@
     </div>
   </section>
 
-  <section class="graphique-top5">
-    <iframe src="graphique.html" title="Top 5 des pays les plus touchés par la cybercriminalité" width="100%" height="700" style="border:none;"></iframe>
+  <!-- Top 5 pays amCharts -->
+  <section class="top5-section conteneur">
+    <h2>Top 5 des pays les plus ciblés par les cyberattaques en 2024</h2>
+    <div id="chartdiv-top5" style="width: 100%; height: 500px;"></div>
   </section>
 
-  <section class="graphique_nb_incident">
-    <iframe src="graphique_nb_incidents.html" title="Nombre d'incidents de cybercriminalité par pays (2020-2024)" width="100%" height="700" style="border:none;"></iframe>
-  </section>
+  <!-- Courbe incidents SVG -->
+  <div class="wrap">
+    <h1>Évolution des principaux types de cybercrimes signalés (2017–2024)</h1>
+    <p class="sub">
+      Données inspirées des rapports annuels du <b>FBI Internet Crime Complaint Center (IC3)</b>.<br>
+      Ce graphique montre la progression du nombre d’incidents déclarés pour les cinq catégories de cybercrimes les plus courantes
+      (<i>Phishing</i>, violation de données personnelles, non-paiement/livraison, extorsion, vol d’identité) entre 2017 et 2024.
+    </p>
+    <div class="tabs" role="tablist" aria-label="Catégories">
+      <button class="tab" role="tab" aria-selected="false" data-key="Phishing">Phishing</button>
+      <button class="tab" role="tab" aria-selected="false" data-key="Personal Data Breach">Personal Data Breach</button>
+      <button class="tab" role="tab" aria-selected="false" data-key="Non-Payment/Non-Delivery">Non-Payment/Non-Delivery</button>
+      <button class="tab" role="tab" aria-selected="false" data-key="Extortion">Extortion</button>
+      <button class="tab" role="tab" aria-selected="false" data-key="Identity Theft / Vol d'identité">Identity Theft / Vol d'identité</button>
+    </div>
+    <div class="panel">
+      <div class="row">
+        <div class="left">
+          <svg id="chart-evolution" viewBox="0 0 920 460" aria-labelledby="title desc" role="img">
+            <title id="title">Graphique de l’évolution annuelle par catégorie</title>
+            <desc id="desc">Axe X : années 2017 à 2024. Axe Y : nombre d’incidents par catégorie.</desc>
+            <defs>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <g id="grid" class="grid"></g>
+            <g id="axes"></g>
+            <text id="xTitle" class="axis-title" x="460" y="452" text-anchor="middle">Année</text>
+            <text id="yTitle" class="axis-title" x="60" y="18" text-anchor="start">Nombre d’incidents</text>
+            <path id="line" class="glow" fill="none" stroke="#9AD1FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <g id="points"></g>
+          </svg>
+          <p class="hint">Astuce : survolez la courbe ou les points pour afficher la valeur exacte.</p>
+        </div>
+        <div class="right">
+          <div id="stats"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Librairies amCharts -->
-  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-
+  <!-- Scripts pour chaque graphique et projet -->
   <script src="js/script.js"></script>
+  <script src="js/graphique.js"></script>
+  <script src="js/graphique_nb_incidents.js"></script>
 </body>
 </html>

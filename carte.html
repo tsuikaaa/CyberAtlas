@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Carte / Globe</title>
+</head>
+<body>
+    
+    <section class="map-section">
+    <div class="map">
+      <div class="controls">
+        <div class="year-toggle">
+          <button class="year-btn" data-year="2020">2020</button>
+          <button class="year-btn" data-year="2021">2021</button>
+          <button class="year-btn" data-year="2022">2022</button>
+          <button class="year-btn" data-year="2023">2023</button>
+          <button class="year-btn" data-year="2024">2024</button>
+        </div>
+
+        <div class="zone-filter">
+          <label for="zoneSelect">Zone géographique :</label>
+          <select id="zoneSelect">
+            <option value="Global">Global</option>
+            <option value="EMEA">EMEA</option>
+            <option value="APAC">APAC</option>
+            <option value="Americas">Americas</option>
+          </select>
+        </div>
+
+        <button id="toggleGlobe" class="globe-btn">Globe</button>
+      </div>
+
+      <div class="main-row">
+        <section class="chart-section">
+          <div class="wrapper">
+            <div id="chartdiv"></div>
+          </div>
+        </section>
+        <section class="malware-stats-section">
+          <div class="malware-stats">
+            <h2>Statistiques des Malwares</h2>
+            <div id="malwareStats"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- Librairies amCharts -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

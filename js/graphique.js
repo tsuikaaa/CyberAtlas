@@ -1,6 +1,6 @@
 am5.ready(function () {
-  const root = am5.Root.new("chartdiv");
-  root._logo.dispose();
+  const root = am5.Root.new("chartdiv-top5");
+    root._logo.dispose();
 
   // Données (Top 5 du graphique partagé)
   let data = [
