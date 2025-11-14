@@ -681,3 +681,55 @@ title?.addEventListener('click', ()=>{
   void title.offsetWidth;
   title.classList.add('burst');
 });
+
+/* =============================
+   Pastilles & liens actifs au scroll
+   ============================= */
+function initScrollProgress() {
+  const sections = document.querySelectorAll("section.band, footer#footer");
+  const navLinks = document.querySelectorAll(".navlinks a[href^='#']");
+  const dots = document.querySelectorAll(".progress .dot");
+
+  if (!sections.length) return;
+
+  const mapIdToNav = {};
+  navLinks.forEach(a => {
+    const id = a.getAttribute("href");
+    if (id && id.startsWith("#")) {
+      mapIdToNav[id] = a;
+    }
+  });
+
+  const mapIdToDot = {};
+  const sectionOrder = ["#hero", "#apropos", "#stats", "#globe", "#serie", "#top5", "#footer"];
+
+  sectionOrder.forEach((id, index) => {
+    const dot = dots[index];
+    if (dot) mapIdToDot[id] = dot;
+  });
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = "#" + entry.target.id;
+        // Active nav
+        navLinks.forEach(l => l.classList.remove("active"));
+        if (mapIdToNav[id]) {
+          mapIdToNav[id].classList.add("active");
+        }
+        // Active dot
+        dots.forEach(d => d.classList.remove("active"));
+        if (mapIdToDot[id]) {
+          mapIdToDot[id].classList.add("active");
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.5,
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
+}

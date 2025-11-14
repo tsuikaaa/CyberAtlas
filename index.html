@@ -19,8 +19,6 @@
 </head>
 
 <body>
-
-
   <!-- ENTÊTE DU SITE -->
   <header class="entete-site">
     <div class="conteneur">
@@ -37,20 +35,38 @@
     </div>
   </header>
 
-<!-- ACCROCHE -->
-<section class="accroche">
-  <!-- Fond en déformation -->
-  <div class="accroche-waves"></div>
-  <div class="accroche-scanlines"></div>
+  <!-- PROGRESS DOTS -->
+<div class="progress" aria-hidden="true">
+  <a class="dot" href="#hero"   title="Accueil"></a>
+  <a class="dot" href="#apropos" title="À propos"></a>
+  <a class="dot" href="#stats"   title="Chiffres"></a>
+  <a class="dot" href="#globe"   title="Carte"></a>
+  <a class="dot" href="#serie"   title="Graphique"></a>
+  <a class="dot" href="#top5"   title="Top pays"></a>
+  <a class="dot" href="#footer"  title="Bas de page"></a>
+</div>
 
-  <div class="contenu-accroche">
-    <h1 class="titre-accroche">CYBERATLAS</h1>
-    <p class="desc-accroche">
-      Panorama de la cybercriminalité mondiale actualisé en temps réel
-    </p>
+  <!-- INTRO -->
+<div class="intro" id="intro" aria-live="polite">
+  <div class="rain"></div>
+  <div class="scan"></div>
+  <div class="boot" role="status" aria-label="Initialisation">
+    <div>$ initializing threat-intel… <span class="ok">OK</span></div>
+    <div>$ loading modules [phishing, ransomware, ddos]… <span class="ok">OK</span></div>
+    <div>$ syncing feeds… <span class="warn">32 sources</span></div>
+    <div>$ status: <span class="ok">online</span> • session id: a7:9c</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="band band--hero" id="hero">
+  <div class="container hero">
+    <div>
+      <h1 class="glitch" id="title" data-text="Cyber Atlas">Cyber Atlas</h1>
+      <p class="subtitle">Cartographier les menaces, comprendre les tendances, agir avec les données.</p>
+    </div>
   </div>
 </section>
-
 
   <!-- A PROPOS -->
 <section class="band band--alt" id="apropos">
