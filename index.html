@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CyberAtlas - Statistiques & Graphiques</title>
-  <link rel="stylesheet" href="css/stylehome.css">
+  <link rel="stylesheet" href="css/styles.css">
   <!-- Librairies amCharts nécessaires -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
@@ -121,13 +121,19 @@
     </div>
   </section>
 
-  <!-- Top 5 pays amCharts -->
-  <section class="top5-section conteneur">
-    <h2>Top 5 des pays les plus ciblés par les cyberattaques en 2024</h2>
+<!-- Top 5 pays amCharts -->
+<section class="top5-section conteneur layout-top5">
+
+  <h2>Top 5 des pays les plus ciblés par les cyberattaques en 2024</h2>
+
+  <div class="graph-and-legend">
+
+    <!-- Graphique -->
     <div id="chartdiv-top5" style="width: 100%; height: 500px;"></div>
 
-    <!-- Légende (sans emoji/icônes) -->
+    <!-- Légende -->
     <aside class="legend-card legend-dark">
+
       <h2>Lecture du graphique</h2>
 
       <p>
@@ -148,31 +154,40 @@
         Astuce : survole une barre pour afficher le <strong>pourcentage exact</strong>.
       </div>
 
-      <!-- Nouvelle animation : radar -->
+      <!-- Animation radar -->
       <div class="anim-card" aria-hidden="true">
         <svg class="radar-anim" viewBox="0 0 240 240" role="img">
           <title>Animation radar</title>
+
           <defs>
             <linearGradient id="radarGrad" x1="0" x2="1">
               <stop offset="0" stop-color="#00E5FF" />
               <stop offset="1" stop-color="#9B5DE5" />
             </linearGradient>
+
             <mask id="sectorMask">
               <rect x="0" y="0" width="240" height="240" fill="black"/>
               <path id="sector" d="M120,120 L120,10 A110,110 0 0 1 220,120 Z" fill="white"/>
             </mask>
           </defs>
+
           <circle cx="120" cy="120" r="110" class="radar-ring"></circle>
           <circle cx="120" cy="120" r="74" class="radar-ring"></circle>
           <circle cx="120" cy="120" r="38" class="radar-ring"></circle>
+
           <g class="sweep">
-            <circle cx="120" cy="120" r="110" fill="url(#radarGrad)" mask="url(#sectorMask)" />
+            <circle cx="120" cy="120" r="110"
+              fill="url(#radarGrad)" mask="url(#sectorMask)"/>
           </g>
+
           <circle cx="120" cy="120" r="4" class="radar-dot"></circle>
         </svg>
       </div>
+
     </aside>
-  </section>
+  </div>
+
+</section>
 
   <!-- Courbe incidents SVG -->
   <div class="wrap">
@@ -220,6 +235,45 @@
     </div>
     
   </div>
+
+  <!-- FOOTER -->
+<footer id="footer">
+  <div class="footwrap">
+    <div>
+      <div class="footbrand">
+        <span class="logo">🛡️</span>
+        <strong>Cyber Atlas</strong>
+      </div>
+      <div class="legalbar">© <span id="year"></span> Cyber Atlas — Tous droits réservés</div>
+    </div>
+
+    <div class="footcols">
+      <div>
+        <h4>Navigation</h4>
+        <a href="#hero">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#stats">Chiffres</a>
+        <a href="#globe">Carte</a>
+        <a href="#serie">Graphique</a>
+        <a href="#top5">Top pays</a>
+      </div>
+      <div>
+        <h4>Légal</h4>
+        <a href="#" id="openMentionsFooter">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Cookies</a>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <a href="#">Nos sources</a>
+        <a href="#">Documentation</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back-to-top -->
+<button class="btn to-top" id="toTop" aria-label="Remonter en haut">▲</button>
 
   <!-- Scripts pour chaque graphique et projet -->
   <script src="js/script.js"></script>
