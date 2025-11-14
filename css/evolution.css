@@ -1,0 +1,277 @@
+/* =============================
+   TOP 5 PAYS – BAR CHART AREA
+============================= */
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1.1fr);
+  gap: 1.5rem;
+}
+
+.chart-area {
+  background: rgba(8, 11, 25, 0.98);
+  border-radius: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.6rem 1.7rem 1.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.chart-area > h1 {
+  font-size: 1.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.axis-headers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.axis-y-title {
+  font-size: 0.8rem;
+}
+
+/* Ici, le deuxième chartdiv (top 5 pays) */
+.chart-area #chartdiv {
+  width: 100%;
+  height: 380px; /* diagramme barres */
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.axis-x-title {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.source {
+  margin-top: 0.7rem;
+  font-size: 0.76rem;
+}
+
+.source a {
+  font-weight: 500;
+}
+
+/* =============================
+   LÉGENDE / RADAR CARD
+============================= */
+
+.legend-card {
+  background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.08), rgba(8, 11, 25, 0.96));
+  border-radius: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.4rem 1.5rem 1.3rem;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.legend-card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+}
+
+.bullets {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.7rem 0 0.7rem;
+}
+
+.bullets li {
+  font-size: 0.9rem;
+  margin-bottom: 0.45rem;
+  color: var(--muted);
+}
+
+.bullets strong {
+  color: var(--text);
+}
+
+.tip {
+  margin-top: 0.8rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.7rem;
+  border: 1px dashed rgba(0, 229, 255, 0.5);
+  background: rgba(0, 229, 255, 0.06);
+  font-size: 0.82rem;
+  color: #e6faff;
+}
+
+/* Radar animation */
+
+.anim-card {
+  position: absolute;
+  right: -10px;
+  bottom: -20px;
+  width: 180px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.radar-anim {
+  opacity: 0.9;
+}
+
+.radar-ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.radar-dot {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.8));
+}
+
+.sweep {
+  transform-origin: 120px 120px;
+  animation: radar-sweep 4s linear infinite;
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================
+   SVG COURBE IC3 (wrap)
+============================= */
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.wrap h1 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.wrap .sub {
+  margin-bottom: 1.1rem;
+  font-size: 0.9rem;
+}
+
+/* Tabs */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.tab {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(8, 11, 25, 0.96);
+  color: var(--muted);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-transform: none;
+  transition: background 0.18s ease-out, border-color 0.18s ease-out, color 0.18s ease-out,
+    transform 0.08s ease-out;
+}
+
+.tab:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.tab[aria-selected="true"] {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #050712;
+  border-color: transparent;
+}
+
+/* Panel layout */
+
+.panel {
+  background: rgba(8, 11, 25, 0.98);
+  border-radius: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.4rem 1.6rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(240px, 1fr);
+  gap: 1.1rem;
+  align-items: flex-start;
+}
+
+.left {
+  min-width: 0;
+}
+
+.right {
+  min-width: 0;
+}
+
+#chart {
+  width: 100%;
+  height: auto;
+  max-width: 920px;
+}
+
+/* Axes, grid & line */
+
+.grid line {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+#axes path,
+#axes line {
+  stroke: rgba(255, 255, 255, 0.38);
+}
+
+.axis-title {
+  fill: var(--muted);
+  font-size: 0.8rem;
+}
+
+.glow {
+  filter: url(#glow);
+}
+
+#points circle {
+  fill: var(--accent);
+  stroke: #050712;
+  stroke-width: 2;
+}
+
+.hint {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+/* Stats colonne droite */
+
+#stats {
+  font-size: 0.86rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}

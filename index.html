@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CyberAtlas - Statistiques & Graphiques</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/evolution.css">
+  <link rel="stylesheet" href="css/top5.css">
   <!-- Librairies amCharts nécessaires -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
@@ -34,7 +36,7 @@
   <section class="accroche">
     <div class="accroche__superposition"></div>
     <div class="contenu-accroche">
-      <h1 class="titre-accroche">HACKED</h1>
+      <h1 class="titre-accroche">CYBERATLAS</h1>
       <p class="desc-accroche">Panorama de la cybercriminalité mondiale actualisé en temps réel</p>
     </div>
   </section>
@@ -152,36 +154,6 @@
 
       <div class="tip">
         Astuce : survole une barre pour afficher le <strong>pourcentage exact</strong>.
-      </div>
-
-      <!-- Animation radar -->
-      <div class="anim-card" aria-hidden="true">
-        <svg class="radar-anim" viewBox="0 0 240 240" role="img">
-          <title>Animation radar</title>
-
-          <defs>
-            <linearGradient id="radarGrad" x1="0" x2="1">
-              <stop offset="0" stop-color="#00E5FF" />
-              <stop offset="1" stop-color="#9B5DE5" />
-            </linearGradient>
-
-            <mask id="sectorMask">
-              <rect x="0" y="0" width="240" height="240" fill="black"/>
-              <path id="sector" d="M120,120 L120,10 A110,110 0 0 1 220,120 Z" fill="white"/>
-            </mask>
-          </defs>
-
-          <circle cx="120" cy="120" r="110" class="radar-ring"></circle>
-          <circle cx="120" cy="120" r="74" class="radar-ring"></circle>
-          <circle cx="120" cy="120" r="38" class="radar-ring"></circle>
-
-          <g class="sweep">
-            <circle cx="120" cy="120" r="110"
-              fill="url(#radarGrad)" mask="url(#sectorMask)"/>
-          </g>
-
-          <circle cx="120" cy="120" r="4" class="radar-dot"></circle>
-        </svg>
       </div>
 
     </aside>
