@@ -668,3 +668,16 @@ tabButtons.forEach(btn=>{
 
 tabButtons[0].setAttribute('aria-selected','true');
 render(cats[0]);
+
+/* Intro */
+const intro = document.getElementById('intro');
+const skip  = document.getElementById('skip');
+const title = document.getElementById('title');
+if (intro) {
+  setTimeout(()=>intro.classList.add('hide'), 2600);
+}
+title?.addEventListener('click', ()=>{
+  title.classList.remove('burst');
+  void title.offsetWidth;
+  title.classList.add('burst');
+});

@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/evolution.css">
   <link rel="stylesheet" href="css/top5.css">
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/header.css"/>
   <!-- Librairies amCharts nécessaires -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
@@ -16,6 +19,8 @@
 </head>
 
 <body>
+
+
   <!-- ENTÊTE DU SITE -->
   <header class="entete-site">
     <div class="conteneur">
@@ -32,14 +37,20 @@
     </div>
   </header>
 
-  <!-- ACCROCHE -->
-  <section class="accroche">
-    <div class="accroche__superposition"></div>
-    <div class="contenu-accroche">
-      <h1 class="titre-accroche">CYBERATLAS</h1>
-      <p class="desc-accroche">Panorama de la cybercriminalité mondiale actualisé en temps réel</p>
-    </div>
-  </section>
+<!-- ACCROCHE -->
+<section class="accroche">
+  <!-- Fond en déformation -->
+  <div class="accroche-waves"></div>
+  <div class="accroche-scanlines"></div>
+
+  <div class="contenu-accroche">
+    <h1 class="titre-accroche">CYBERATLAS</h1>
+    <p class="desc-accroche">
+      Panorama de la cybercriminalité mondiale actualisé en temps réel
+    </p>
+  </div>
+</section>
+
 
   <!-- A PROPOS -->
 <section class="band band--alt" id="apropos">
@@ -231,9 +242,8 @@
       </div>
       <div>
         <h4>Légal</h4>
-        <a href="#" id="openMentionsFooter">Mentions légales</a>
+        <a href="mentions.html">Mentions légales</a>
         <a href="#">Politique de confidentialité</a>
-        <a href="#">Cookies</a>
       </div>
       <div>
         <h4>Ressources</h4>
@@ -247,9 +257,11 @@
 <!-- Back-to-top -->
 <button class="btn to-top" id="toTop" aria-label="Remonter en haut">▲</button>
 
+
   <!-- Scripts pour chaque graphique et projet -->
   <script src="js/script.js"></script>
   <script src="js/graphique.js"></script>
   <script src="js/graphique_nb_incidents.js"></script>
+
 </body>
 </html>

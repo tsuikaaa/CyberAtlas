@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/footer.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+  <title>Mentions légales — Cyberatlas</title>
+  <meta name="description" content="Mentions légales, confidentialité et sources du projet Cyberatlas (Datawiz Cyber) dédié à la visualisation de la cybercriminalité." />
+  <meta property="og:title" content="Mentions légales — Cyberatlas" />
+  <meta property="og:description" content="Cadre légal, protection des données (RGPD), cybersécurité, sources et méthodologie du projet Cyberatlas." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0d0f16" />
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg:#0d0f16; --text:#e8ecf4; --muted:#a7b0bf; --line:rgba(255,255,255,.10);
+      --card:#121628; --accent:#7dd3fc; --accent2:#8b5cf6; --focus:#22c55e;
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg:#f7f8fb; --text:#0c1020; --muted:#516072; --line:rgba(9,12,24,.12);
+      --card:#ffffff;
+    }
+    :root[data-theme="dark"] { color-scheme: dark; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      line-height:1.6;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    .btn{
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:background-color .2s,border-color .2s,color .2s;
+    }
+    .btn:hover{border-color:var(--muted)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem}
+    .brand svg{width:22px;height:22px}
+    .actions{display:flex;gap:8px}
+    header.site{
+      position:relative;border-bottom:1px solid var(--line);
+      background:radial-gradient(900px 600px at 85% -10%, rgba(125,211,252,.12), transparent 60%),
+                 radial-gradient(900px 600px at 10% -20%, rgba(139,92,246,.10), transparent 60%);
+    }
+    .hero{padding:18px 0 20px}
+    .kicker{color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
+    h1{margin:.2rem 0 0;font-size:2rem;line-height:1.2}
+    .subtitle{color:var(--muted);margin:.25rem 0 0}
+
+    nav.toc{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      position:sticky;top:0;
+      background:color-mix(in oklab, var(--bg) 92%, transparent);
+      backdrop-filter:saturate(1.2) blur(6px);
+      z-index:9
+    }
+    .toc ul{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:10px 0}
+    .toc a{display:block;padding:8px 10px;border-radius:10px;border:1px solid transparent;color:var(--muted)}
+    .toc a:hover{border-color:var(--line);color:var(--text)}
+
+    main section{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:22px;margin:18px 0;transition:background-color .25s ease,border-color .25s ease}
+    main h2{font-size:1.22rem;margin:0 0 .5rem}
+    .lead{color:var(--muted);margin:0 0 1rem}
+    .grid{display:grid;gap:14px}
+    @media (min-width:820px){.cols-2{grid-template-columns:1fr 1fr}}
+
+    .info{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;padding:12px;border:1px dashed var(--line);border-radius:12px;background:rgba(255,255,255,.03)}
+    .info.fullwidth{grid-template-columns:1fr} /* pour les blocs qui doivent être aussi larges que DPO */
+    .info div:nth-child(odd){color:var(--muted)}
+    .callout{border-left:3px solid transparent;border-image:linear-gradient(180deg,var(--accent),var(--accent2)) 1;background:linear-gradient(90deg, rgba(125,211,252,.08), rgba(139,92,246,.08));padding:12px 14px;border-radius:12px}
+
+    footer.site{border-top:1px solid var(--line);color:var(--muted)}
+    .foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:16px 0}
+  </style>
+</head>
+<body>
+  <header class="site" role="banner">
+    <div class="container topbar">
+      <div class="brand" aria-label="Cyberatlas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8"/><path d="M2 12h20M12 2v20"/></svg>
+        <span>Cyberatlas</span>
+      </div>
+    </div>
+    <div class="container hero">
+      <div class="kicker">Projet universitaire — Dataviz </div>
+      <h1>Mentions légales</h1>
+      <p class="subtitle">Cadre légal, protection des données (RGPD), cybersécurité, sources & méthodologie</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Navigation secondaire">
+    <div class="container">
+      <ul>
+        <li><a href="#editeur">Éditeur</a></li>
+        <li><a href="#dpo">DPO</a></li>
+        <li><a href="#hebergeur">Hébergeur</a></li>
+        <li><a href="#rôles">Rôles</a></li>
+        <li><a href="#projet">Projet</a></li>
+        <li><a href="#medias">Médias</a></li>
+        <li><a href="#ip">Propriété</a></li>
+        <li><a href="#donnees">Données</a></li>
+        <li><a href="#sources">Sources</a></li>
+        <li><a href="#ethique">Éthique</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="contenu" class="container" role="main">
+
+    <section id="editeur">
+  <h2>Éditeur du site</h2>
+  <p class="lead">Université Gustave Eiffel</p>
+  <div class="grid cols-2">
+    <div class="info">
+      <div>Adresse</div><div>5 boulevard Descartes, 77420 Champs-sur-Marne</div>
+      <div>Contact</div><div>+33 (0)1 60 95 75 00</div>
+      <div>SIRET</div><div>130 026 123 00013</div>
+    </div>
+    <div class="info">
+      <div>Code APE</div><div>85.422</div>
+      <div>Forme</div><div>EPSCP</div>
+      <div>Directeur de la publication</div><div>Gilles Roussel</div>
+    </div>
+  </div>
+</section>
+
+    <section id="dpo">
+      <h2>Responsable de la protection des données (DPO)</h2>
+      <div class="info fullwidth">
+        <div>Nom</div><div>Véronique Juge</div>
+        <div>Adresse</div><div>5 boulevard Descartes, 77420 Champs-sur-Marne</div>
+        <div>Contact</div><div><a href="mailto:protectiondesdonnees-dpo@univ-eiffel.fr">protectiondesdonnees-dpo@univ-eiffel.fr</a></div>
+      </div>
+    </section>
+
+    <section id="hebergeur">
+      <h2>Hébergeur</h2>
+      <div class="info fullwidth">
+        <div>Nom</div><div>o2switch</div>
+        <div>Adresse</div><div>Chem. des Pardiaux, 63000 Clermont-Ferrand</div>
+        <div>Contact</div><div>04 44 44 60 40</div>
+      </div>
+    </section>
+
+    <section id="rôles">
+      <h2>Rôles des conceptrices du site</h2>
+      <p class="lead">Equipe de 3 étudiantes</p>
+      <div class="grid cols-2">
+        <div>
+          <ul>
+            <li>Suhita ALI : Développeuse </li>
+            <li>Mariam ZOUKROU : Développeuse et Graphiste </li>
+            <li>Mariam SARR : Développeuse et Graphiste</li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+    </section>
+
+    <section id="projet">
+      <h2>Présentation du projet</h2>
+      <p class="lead">Dataviz Cyber / CYBERATLAS — visualisation et analyse de la cybercriminalité mondiale.</p>
+      <div class="grid cols-2">
+        <div>
+          <ul>
+            <li>Collecte de données publiques (FBI IC3, ENISA, Surfshark, Kaspersky, Zscaler…).</li>
+            <li>Nettoyage, agrégation et mise en forme statistique (indicateurs anonymisés).</li>
+            <li>Visualisations interactives : cartes, tops, séries temporelles.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="callout">Objectif : <strong>sensibilisation</strong> et <strong>prévention</strong>. Graphiques sourcés pour assurer <strong>transparence</strong> et <strong>traçabilité</strong>.</div>
+          <div class="callout">Le site diffuse des visualisations liées à la <strong>cybercriminalité</strong> (phishing, ransomware, extorsion, brèches). Les données sont utilisées à des fins <strong>pédagogiques</strong> et non commerciales.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="medias">
+      <h2>Utilisation des médias</h2>
+      <p class="lead">Créations originales ou sources tierces référencées. Respect des licences et du droit d’auteur.</p>
+      <ul>
+        <li>Les extraits de rapports et API sont accompagnés d’une <em>mention de source</em>.</li>
+        <li>Les visuels ont une finalité <strong>éducative</strong> (aucune incitation à des usages malveillants).</li>
+      </ul>
+    </section>
+
+    <section id="ip">
+      <h2>Propriété intellectuelle</h2>
+      <div class="info fullwidth">
+        <div>Contenus</div><div>Textes, graphiques et données protégés par le droit d’auteur</div>
+        <div>Reproduction</div><div>Interdite sans autorisation, hors courte citation avec lien</div>
+        <div>Marques</div><div>Restent la propriété de leurs détenteurs</div>
+        <div>Éléments visuels</div><div> Certains visuels sont issus d’une bibliothèque de code, sources indiquées au bas du graphique (https://www.amcharts.com)</div>
+      </div>
+    </section>
+
+    <section id="confidentialite">
+  <h2>Politique de confidentialité</h2>
+  <p class="lead">
+    Notre politique de confidentialité détaille la manière dont nous collectons, traitons et protégeons les données des utilisateurs. 
+    Elle s'applique à toutes les informations recueillies via le site Cyberatlas.
+  </p>
+
+  <div class="info">
+    <div>Collecte</div>
+    <div>Seules les données strictement nécessaires à l'utilisation des visualisations sont collectées, aucune information personnelle sans consentement explicite.</div>
+
+    <div>Utilisation</div>
+    <div>Les données sont utilisées uniquement à des fins pédagogiques et statistiques, anonymisées et agrégées.</div>
+
+    <div>Partage</div>
+    <div>Aucune donnée n'est partagée avec des tiers à des fins commerciales.</div>
+
+    <div>Conservation</div>
+    <div>Les informations collectées sont stockées de manière sécurisée et conservées uniquement pour la durée nécessaire à la finalité du projet.</div>
+
+    <div>Droits</div>
+    <div>Conformité RGPD : accès, rectification, effacement via contact avec le <a href="mailto:protectiondesdonnees-dpo@univ-eiffel.fr">DPO</a>.</div>
+  </div>
+</section>
+
+    <section id="donnees">
+      <h2>Données personnelles & cybersécurité</h2>
+      <p class="lead">Aucune donnée personnelle n’est collectée sans consentement explicite. Indicateurs <strong>agrégés</strong> et <strong>anonymisés</strong>.</p>
+      <ul>
+        <li>Conformité <strong>RGPD</strong> — droits d’accès, rectification, effacement via le <a href="mailto:protectiondesdonnees-dpo@univ-eiffel.fr">DPO</a>.</li>
+        <li>Mesures techniques : TLS, en-têtes de sécurité, contrôle d’accès minimal.</li>
+        <li>Pas de cookies publicitaires, pas de profilage marketing.</li>
+      </ul>
+      <div class="callout" style="margin-top:10px">🔐 Bonnes pratiques : méfiez-vous du <em>phishing</em>, activez la <strong>double authentification</strong>, vérifiez l’URL avant de saisir des identifiants.</div>
+    </section>
+
+    <section id="sources">
+      <h2>Sources & références</h2>
+      <div class="grid cols-2">
+        <div>
+          <ul>
+            <li>FBI Internet Crime Complaint Center (IC3)</li>
+            <li>ENISA / Europol — Threat Landscape</li>
+            <li>Surfshark — Global Data Breach Statistics</li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>Kaspersky — Spam & Phishing reports</li>
+            <li>Zscaler ThreatLabz — Ransomware</li>
+            <li>Cyber Security Report de Check Point</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ethique">
+      <h2>Engagement éthique</h2>
+      <p class="lead">Projet à visée <strong>éducative</strong> et <strong>scientifique</strong> ; aucune facilitation d’activité illégale.</p>
+      <ul>
+        <li>Transparence méthodologique et reproductibilité des indicateurs.</li>
+        <li>Respect des lois et politiques d’utilisation des API.</li>
+        <li>Signalement responsable via <code>Issues</code> du dépôt.</li>
+      </ul>
+    </section>
+
+  </main>
+
+    <!-- FOOTER -->
+<footer id="footer">
+  <div class="footwrap">
+    <div>
+      <div class="footbrand">
+        <span class="logo">🛡️</span>
+        <strong>Cyber Atlas</strong>
+      </div>
+      <div class="legalbar">© <span id="year"></span> Cyber Atlas — Tous droits réservés</div>
+    </div>
+
+    <div class="footcols">
+      <div>
+        <h4>Navigation</h4>
+        <a href="#hero">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#stats">Chiffres</a>
+        <a href="#globe">Carte</a>
+        <a href="#serie">Graphique</a>
+        <a href="#top5">Top pays</a>
+      </div>
+      <div>
+        <h4>Légal</h4>
+        <a href="mentions.html">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Cookies</a>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <a href="#">Nos sources</a>
+        <a href="#">Documentation</a>
+      </div>
+    </div>
+  </div>
+  <a class="btn" href="#editeur">⬆️ Haut de page</a>
+</footer>

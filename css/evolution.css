@@ -12,7 +12,7 @@
 }
 
 .chart-area {
-  background: rgba(8, 11, 25, 0.98);
+  background: rgba(18, 26, 51, .92);
   border-radius: 1.3rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1.6rem 1.7rem 1.4rem;
@@ -206,7 +206,7 @@
 /* Panel layout */
 
 .panel {
-  background: rgba(8, 11, 25, 0.98);
+  background: rgba(18, 26, 51, .92);
   border-radius: 1.3rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1.4rem 1.6rem;
