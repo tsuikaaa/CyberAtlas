@@ -686,50 +686,136 @@ title?.addEventListener('click', ()=>{
    Pastilles & liens actifs au scroll
    ============================= */
 function initScrollProgress() {
-  const sections = document.querySelectorAll("section.band, footer#footer");
-  const navLinks = document.querySelectorAll(".navlinks a[href^='#']");
-  const dots = document.querySelectorAll(".progress .dot");
+  const sections = document.querySelectorAll("section.band, footer#footer");
+  const navLinks = document.querySelectorAll(".navlinks a[href^='#']");
+  const dots = document.querySelectorAll(".progress .dot");
 
-  if (!sections.length) return;
+  if (!sections.length) return;
 
-  const mapIdToNav = {};
-  navLinks.forEach(a => {
-    const id = a.getAttribute("href");
-    if (id && id.startsWith("#")) {
-      mapIdToNav[id] = a;
+  const mapIdToNav = {};
+  navLinks.forEach(a => {
+    const id = a.getAttribute("href");
+    if (id && id.startsWith("#")) {
+      mapIdToNav[id] = a;
+    }
+  });
+
+  const mapIdToDot = {};
+  // ORDRE CORRIGÉ
+  const sectionOrder = ["#hero", "#apropos", "#stats", "#globe", "#top5", "#serie", "#footer"];
+
+  sectionOrder.forEach((id, index) => {
+    const dot = dots[index];
+    if (dot) mapIdToDot[id] = dot;
+  });
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = "#" + entry.target.id;
+        // Active nav
+        navLinks.forEach(l => l.classList.remove("active"));
+        if (mapIdToNav[id]) {
+          mapIdToNav[id].classList.add("active");
+        }
+        // Active dot
+        dots.forEach(d => d.classList.remove("active"));
+        if (mapIdToDot[id]) {
+          mapIdToDot[id].classList.add("active");
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0.5,
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
+}
+
+
+ // ======= COMPTEURS “BRIQUES” =======
+  function createDigitBoxes(container, length){
+    container.innerHTML = "";
+    for(let i=0;i<length;i++){
+      const box = document.createElement("div");
+      box.className = "digit-box";
+      box.textContent = "0";
+      container.appendChild(box);
     }
-  });
+  }
 
-  const mapIdToDot = {};
-  const sectionOrder = ["#hero", "#apropos", "#stats", "#globe", "#serie", "#top5", "#footer"];
+  function animateDigits(containerId, finalNumber, duration){
+    const container = document.getElementById(containerId);
+    const targetStr = finalNumber.toString();
+    const len = targetStr.length;
+    createDigitBoxes(container, len);
 
-  sectionOrder.forEach((id, index) => {
-    const dot = dots[index];
-    if (dot) mapIdToDot[id] = dot;
-  });
+    const boxes = Array.from(container.querySelectorAll(".digit-box"));
+    const startTime = performance.now();
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const id = "#" + entry.target.id;
-        // Active nav
-        navLinks.forEach(l => l.classList.remove("active"));
-        if (mapIdToNav[id]) {
-          mapIdToNav[id].classList.add("active");
-        }
-        // Active dot
-        dots.forEach(d => d.classList.remove("active"));
-        if (mapIdToDot[id]) {
-          mapIdToDot[id].classList.add("active");
+    function step(now){
+      const progress = Math.min((now - startTime)/duration,1);
+      const current = Math.floor(finalNumber * progress);
+      const currentStr = current.toString().padStart(len,"0");
+      boxes.forEach((box,idx)=>{
+        const newDigit = currentStr[idx];
+        if(box.textContent !== newDigit){
+          box.textContent = newDigit;
         }
       });
-    },
-    {
-      root: null,
-      threshold: 0.5,
+      if(progress < 1){
+        requestAnimationFrame(step);
+      }
     }
-  );
+    requestAnimationFrame(step);
+  }
 
-  sections.forEach(section => observer.observe(section));
+  document.addEventListener("DOMContentLoaded", ()=>{
+    animateDigits("france-digits", 348000, 1300);
+    animateDigits("usa-digits",    859532, 1300);
+    animateDigits("world-digits",   10500, 1400);
+  });
+
+  
+
+  // ======= COMPTEURS “BRIQUES” =======
+function createDigitBoxes(container, length){
+  container.innerHTML = "";
+  for(let i=0;i<length;i++){
+    const box = document.createElement("div");
+    box.className = "digit-box";
+    box.textContent = "0";
+    container.appendChild(box);
+  }
 }
+function animateDigits(containerId, finalNumber, duration){
+  const container = document.getElementById(containerId);
+  const targetStr = finalNumber.toString();
+  const len = targetStr.length;
+  createDigitBoxes(container, len);
+  const boxes = Array.from(container.querySelectorAll(".digit-box"));
+  const startTime = performance.now();
+  function step(now){
+    const progress = Math.min((now - startTime)/duration,1);
+    const current = Math.floor(finalNumber * progress);
+    const currentStr = current.toString().padStart(len,"0");
+    boxes.forEach((box,idx)=>{
+      const newDigit = currentStr[idx];
+      if(box.textContent !== newDigit){
+        box.textContent = newDigit;
+      }
+    });
+    if(progress < 1){
+      requestAnimationFrame(step);
+    }
+  }
+  requestAnimationFrame(step);
+}
+document.addEventListener("DOMContentLoaded", ()=>{
+  animateDigits("france-digits", 348000, 1300);
+  animateDigits("usa-digits",    859532, 1300);
+  animateDigits("world-digits",   10500, 1400);
+});

@@ -5,13 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="favicon.ico" />
   <link rel="stylesheet" href="css/footer.css"/>
-  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  
   <title>Mentions légales — Cyberatlas</title>
   <meta name="description" content="Mentions légales, confidentialité et sources du projet Cyberatlas (Datawiz Cyber) dédié à la visualisation de la cybercriminalité." />
   <meta property="og:title" content="Mentions légales — Cyberatlas" />
   <meta property="og:description" content="Cadre légal, protection des données (RGPD), cybersécurité, sources et méthodologie du projet Cyberatlas." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0d0f16" />
+
+  <!-- NAVBAR -->
+<nav>
+  <a class="brand" href="#hero" aria-label="Revenir à l'accueil">
+    <span class="logo">🛡️</span><b>CYBER ATLAS</b>
+  </a>
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu" aria-expanded="false">☰</button>
+  <ul class="navlinks" id="menu">
+    <li><a href="#hero" data-route="home">Accueil</a></li>
+    <li><a href="#apropos" data-route="apropos">À propos</a></li>
+    <li><a href="#stats" data-route="stats">Chiffres</a></li>
+    <li><a href="#globe" data-route="carte">Carte</a></li>
+    <li><a href="#serie" data-route="serie">Graphique</a></li>
+    <li><a href="#top5" data-route="top5">Top pays</a></li>
+    <li><a href="#" id="openMentions" data-route="mentions">Mentions légales</a></li>
+  </ul>
+</nav>
+<div class="spacer" aria-hidden="true"></div>
+
   <style>
     :root {
       color-scheme: dark light;
@@ -147,46 +167,53 @@
     </section>
 
     <section id="hebergeur">
-      <h2>Hébergeur</h2>
-      <div class="info fullwidth">
-        <div>Nom</div><div>o2switch</div>
-        <div>Adresse</div><div>Chem. des Pardiaux, 63000 Clermont-Ferrand</div>
-        <div>Contact</div><div>04 44 44 60 40</div>
-      </div>
-    </section>
+<h2>Hébergeur</h2>
+<div class="info fullwidth">
+<div>Nom</div><div>GitHub Pages</div>
+<div>Adresse</div><div>Boulevard Prins Bernhardplein 20 - Amsterdam 1097 JB - Pays-Bas</div>
+<div>Site web</div><div><a href="https://pages.github.com/">https://pages.github.com/</a></div>
+<p class="lead" style="margin-top:12px;">
+<strong>Politique de conservation des données de GitHub :</strong> GitHub conserve les données tant que nécessaire pour fournir ses services, respecter les obligations légales ou résoudre des litiges. Les dépôts publics sont conservés indéfiniment, sauf suppression, tandis que les dépôts privés sont protégés. Les utilisateurs peuvent demander la suppression ou modification de leurs données.
+</p>
+</div>
+</section>
+
+
 
     <section id="rôles">
       <h2>Rôles des conceptrices du site</h2>
       <p class="lead">Equipe de 3 étudiantes</p>
       <div class="grid cols-2">
         <div>
-          <ul>
-            <li>Suhita ALI : Développeuse </li>
-            <li>Mariam ZOUKROU : Développeuse et Graphiste </li>
-            <li>Mariam SARR : Développeuse et Graphiste</li>
+           <ul>
+        <li><a href="https://www.linkedin.com/in/suhita-ali-014804348/" target="_blank" rel="noopener">Suhita ALI</a> : Développeuse et Graphiste</li>
+        <li><a href="https://www.linkedin.com/in/mariam-zoukrou-68863b34b" target="_blank" rel="noopener">Mariam ZOUKROU</a> : Développeuse, Graphiste et Maquettage</li>
+        <li><a href="https://www.linkedin.com/in/mariam-sarr-1742932a0/" target="_blank" rel="noopener">Mariam SARR</a> : Développeuse, Graphiste et Maquettage</li>
+      </ul>
           </ul>
         </div>
         <div></div>
       </div>
     </section>
 
+
     <section id="projet">
-      <h2>Présentation du projet</h2>
-      <p class="lead">Dataviz Cyber / CYBERATLAS — visualisation et analyse de la cybercriminalité mondiale.</p>
-      <div class="grid cols-2">
-        <div>
-          <ul>
-            <li>Collecte de données publiques (FBI IC3, ENISA, Surfshark, Kaspersky, Zscaler…).</li>
-            <li>Nettoyage, agrégation et mise en forme statistique (indicateurs anonymisés).</li>
-            <li>Visualisations interactives : cartes, tops, séries temporelles.</li>
-          </ul>
-        </div>
-        <div>
-          <div class="callout">Objectif : <strong>sensibilisation</strong> et <strong>prévention</strong>. Graphiques sourcés pour assurer <strong>transparence</strong> et <strong>traçabilité</strong>.</div>
-          <div class="callout">Le site diffuse des visualisations liées à la <strong>cybercriminalité</strong> (phishing, ransomware, extorsion, brèches). Les données sont utilisées à des fins <strong>pédagogiques</strong> et non commerciales.</div>
-        </div>
-      </div>
-    </section>
+<h2>Présentation du projet</h2>
+<p class="lead">Cyberatlas est un projet universitaire collaboratif dédié à la datavisualisation, permettant d’explorer et de comprendre des informations liées à la <strong>cybercriminalité</strong> grâce à des graphiques interactifs et des données sourcées.</p>
+<div>
+<p style="margin-top:0">Le projet s’appuie sur plusieurs étapes clés :</p>
+<ul>
+<li>Collecte et centralisation de données publiques (FBI IC3, ENISA, Surfshark, Kaspersky, Zscaler…).</li>
+<li>Nettoyage, traitement et normalisation des données.</li>
+<li>Conception de visualisations interactives : cartes, tops, séries temporelles, comparatifs.</li>
+</ul>
+</div>
+<div>
+<div class="callout">Objectif : <strong>sensibilisation</strong> et <strong>compréhension des risques</strong>. Chaque visualisation est sourcée afin d’assurer <strong>transparence</strong> et <strong>traçabilité</strong> des données utilisées.</div>
+<div class="callout">Les contenus portent sur divers types de cybermenaces (phishing, ransomwares, extorsion, brèches…). Toutes les données sont exploitées dans un cadre <strong>pédagogique</strong> et non commercial.</div>
+</div>
+</div>
+</section>
 
     <section id="medias">
       <h2>Utilisation des médias</h2>
@@ -195,16 +222,6 @@
         <li>Les extraits de rapports et API sont accompagnés d’une <em>mention de source</em>.</li>
         <li>Les visuels ont une finalité <strong>éducative</strong> (aucune incitation à des usages malveillants).</li>
       </ul>
-    </section>
-
-    <section id="ip">
-      <h2>Propriété intellectuelle</h2>
-      <div class="info fullwidth">
-        <div>Contenus</div><div>Textes, graphiques et données protégés par le droit d’auteur</div>
-        <div>Reproduction</div><div>Interdite sans autorisation, hors courte citation avec lien</div>
-        <div>Marques</div><div>Restent la propriété de leurs détenteurs</div>
-        <div>Éléments visuels</div><div> Certains visuels sont issus d’une bibliothèque de code, sources indiquées au bas du graphique (https://www.amcharts.com)</div>
-      </div>
     </section>
 
     <section id="confidentialite">
@@ -229,6 +246,8 @@
 
     <div>Droits</div>
     <div>Conformité RGPD : accès, rectification, effacement via contact avec le <a href="mailto:protectiondesdonnees-dpo@univ-eiffel.fr">DPO</a>.</div>
+
+
   </div>
 </section>
 
@@ -251,6 +270,7 @@
             <li>FBI Internet Crime Complaint Center (IC3)</li>
             <li>ENISA / Europol — Threat Landscape</li>
             <li>Surfshark — Global Data Breach Statistics</li>
+            <li>Amcharts</li>
           </ul>
         </div>
         <div>

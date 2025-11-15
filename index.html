@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="css/top5.css">
   <link rel="icon" href="favicon.ico" />
   <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel ="stylesheet" href="css/rebours.css" />
   <!-- Librairies amCharts nécessaires -->
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
@@ -19,34 +20,36 @@
 </head>
 
 <body>
-  <!-- ENTÊTE DU SITE -->
-  <header class="entete-site">
-    <div class="conteneur">
-      <a class="logo accent" href="#">CYBERATLAS</a>
-      <nav class="navigation">
-        <a href="#">Accueil</a>
-        <a href="#">À propos</a>
-        <a href="#">Statistiques</a>
-      </nav>
-      <button class="bouton-langue" aria-label="Changer la langue">
-        <span>FR</span>
-        <span>EN</span>
-      </button>
-    </div>
-  </header>
+<!-- NAVBAR -->
+<nav>
+  <a class="brand" href="#hero" aria-label="Revenir à l'accueil">
+    <span class="logo">🛡️</span><b>CYBER ATLAS</b>
+  </a>
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu" aria-expanded="false">☰</button>
+  <ul class="navlinks" id="menu">
+    <li><a href="#apropos" data-route="apropos">À propos</a></li>
+    <li><a href="#stats" data-route="stats">Chiffres</a></li>
+    <li><a href="#globe" data-route="carte">Carte</a></li>
+    <li><a href="#top5" data-route="top5">Top pays</a></li>
+    <li><a href="#serie" data-route="serie">Graphique</a></li>
+    <li><a href="mentions.html"  id="openMentions" data-route="mentions">Mentions légales</a></li>
+  </ul>
+</nav>
+<div class="spacer" aria-hidden="true"></div>
 
-  <!-- PROGRESS DOTS -->
-<div class="progress" aria-hidden="true">
-  <a class="dot" href="#hero"   title="Accueil"></a>
-  <a class="dot" href="#apropos" title="À propos"></a>
-  <a class="dot" href="#stats"   title="Chiffres"></a>
-  <a class="dot" href="#globe"   title="Carte"></a>
-  <a class="dot" href="#serie"   title="Graphique"></a>
-  <a class="dot" href="#top5"   title="Top pays"></a>
-  <a class="dot" href="#footer"  title="Bas de page"></a>
+<!-- PROGRESS DOTS -->
+<div class="progress">
+  <a class="dot" href="#hero"    title="Accueil"></a>
+  <a class="dot" href="#apropos" title="À propos"></a>
+  <a class="dot" href="#stats"   title="Chiffres"></a>
+  <a class="dot" href="#globe"   title="Carte"></a>
+  <a class="dot" href="#top5"    title="Top 5"></a>
+  <a class="dot" href="#serie"   title="Graphique"></a>
+  <a class="dot" href="#footer"  title="Bas de page"></a>
 </div>
 
-  <!-- INTRO -->
+
+<!-- INTRO -->
 <div class="intro" id="intro" aria-live="polite">
   <div class="rain"></div>
   <div class="scan"></div>
@@ -68,7 +71,7 @@
   </div>
 </section>
 
-  <!-- A PROPOS -->
+<!-- A PROPOS -->
 <section class="band band--alt" id="apropos">
   <div class="container">
     <div class="about">
@@ -87,155 +90,204 @@
   </div>
 </section>
 
-  <!-- STATISTIQUES PRINCIPALES -->
-  <section class="section-stats conteneur">
-    <div class="grille-stats">
-      <div class="panneau-stats">
-        <span class="icone-stats"></span>
-        <span class="valeur-stats">798</span>
-        <span class="etiquette-stats">CYBERATTAQUES/JOUR</span>
-      </div>
-      <div class="panneau-stats">
-        <span class="icone-stats"></span>
-        <span class="valeur-stats">534</span>
-        <span class="etiquette-stats">INFECTIONS RANSOMWARE</span>
-      </div>
-      <div class="panneau-stats">
-        <span class="icone-stats"></span>
-        <span class="valeur-stats">883 133</span>
-        <span class="etiquette-stats">VICTIMES EN 2023</span>
-      </div>
-    </div>
-    <div class="source-stats">Source : Statistica, CERT, rapports officiels</div>
-  </section>
+  <header>
+    <div class="eyebrow">CYBERCRIMINALITÉ </div>
+  </header>
 
- <!-- GLOBE/Carte amCharts -->
-  <section class="map-section">
-    <div class="map">
-      <div class="controls">
-        <div class="year-toggle">
-          <button class="year-btn" data-year="2020">2020</button>
-          <button class="year-btn" data-year="2021">2021</button>
-          <button class="year-btn" data-year="2022">2022</button>
-          <button class="year-btn" data-year="2023">2023</button>
-          <button class="year-btn" data-year="2024">2024</button>
+  <!-- STRIP 3 COMPTEURS -->
+  <section class="strip-wrapper">
+    <p class="strip-title">
+      Voici ce que la cybercriminalité représente déjà
+      <span>en France</span>, <span>aux États-Unis</span> et <span>dans le monde</span>.
+    </p>
+
+    <div class="strip-grid">
+      <!-- FRANCE -->
+      <article class="strip-card">
+        <div class="strip-header">
+          <div class="strip-flag">🇫🇷</div>
+          <div class="strip-label">France — crimes & délits 2024</div>
         </div>
+        <div id="france-digits" class="digit-row" data-final="348000"></div>
+        <p class="strip-caption">
+          ≈ 348&nbsp;000 crimes et délits liés au numérique enregistrés en France en 2024.
+        </p>
+        <p class="strip-source">
+          Source&nbsp;: Ministère de l’Intérieur, statistiques 2024 des infractions liées au numérique.
+        </p>
+      </article>
 
-        <div class="zone-filter">
-          <label for="zoneSelect">Zone géographique :</label>
-          <select id="zoneSelect">
-            <option value="Global">Global</option>
-            <option value="EMEA">EMEA</option>
-            <option value="APAC">APAC</option>
-            <option value="Americas">Americas</option>
-          </select>
+      <!-- USA -->
+      <article class="strip-card">
+        <div class="strip-header">
+          <div class="strip-flag">🇺🇸</div>
+          <div class="strip-label">USA — plaintes IC3 2024</div>
         </div>
+        <div id="usa-digits" class="digit-row" data-final="859532"></div>
+        <p class="strip-caption">
+          859&nbsp;532 plaintes enregistrées en 2024 auprès du FBI Internet Crime Complaint Center (IC3).
+        </p>
+        <p class="strip-source">
+          Source&nbsp;: FBI – IC3, “2024 Internet Crime Report”.
+        </p>
+      </article>
 
-        <button id="toggleGlobe" class="globe-btn">Globe</button>
-      </div>
-
-      <div class="main-row">
-        <section class="chart-section">
-          <div class="wrapper">
-            <div id="chartdiv"></div>
-          </div>
-        </section>
-        <section class="malware-stats-section">
-          <div class="malware-stats">
-            <h2>Statistiques des Malwares</h2>
-            <div id="malwareStats"></div>
-          </div>
-        </section>
-      </div>
+      <!-- MONDE -->
+      <article class="strip-card">
+        <div class="strip-header">
+          <div class="strip-flag">🌐</div>
+          <div class="strip-label">Coût mondial estimé 2025</div>
+        </div>
+        <div id="world-digits" class="digit-row" data-final="10500"></div>
+        <p class="strip-caption">
+          ≈ 10&nbsp;500&nbsp;Mds&nbsp;$ / an (10,5&nbsp;trillions) de coût de la cybercriminalité à l’horizon 2025.
+        </p>
+        <p class="strip-source">
+          Source&nbsp;: Cybersecurity Ventures, “Official Cybercrime Report”.
+        </p>
+      </article>
     </div>
   </section>
 
-<!-- Top 5 pays amCharts -->
-<section class="top5-section conteneur layout-top5">
+<!-- STATISTIQUES PRINCIPALES -->
+<section id="stats" class="band section-stats conteneur">
+  <div class="grille-stats">
+    <div class="panneau-stats">
+      <span class="icone-stats"></span>
+      <span class="valeur-stats">798</span>
+      <span class="etiquette-stats">CYBERATTAQUES/JOUR</span>
+    </div>
+    <div class="panneau-stats">
+      <span class="icone-stats"></span>
+      <span class="valeur-stats">534</span>
+      <span class="etiquette-stats">INFECTIONS RANSOMWARE</span>
+    </div>
+    <div class="panneau-stats">
+      <span class="icone-stats"></span>
+      <span class="valeur-stats">883 133</span>
+      <span class="etiquette-stats">VICTIMES EN 2023</span>
+    </div>
+  </div>
+  <div class="source-stats">Source : Statistica, CERT, rapports officiels</div>
+</section>
 
-  <h2>Top 5 des pays les plus ciblés par les cyberattaques en 2024</h2>
+<!-- GLOBE/Carte amCharts -->
+<section class="band map-section" id="globe">
+  <div class="map">
+    <div class="controls">
+      <div class="year-toggle">
+        <button class="year-btn" data-year="2020">2020</button>
+        <button class="year-btn" data-year="2021">2021</button>
+        <button class="year-btn" data-year="2022">2022</button>
+        <button class="year-btn" data-year="2023">2023</button>
+        <button class="year-btn" data-year="2024">2024</button>
+      </div>
+      <div class="zone-filter">
+        <label for="zoneSelect">Zone géographique :</label>
+        <select id="zoneSelect">
+          <option value="Global">Global</option>
+          <option value="EMEA">EMEA</option>
+          <option value="APAC">APAC</option>
+          <option value="Americas">Americas</option>
+        </select>
+      </div>
+      <button id="toggleGlobe" class="globe-btn">Globe</button>
+    </div>
+    <div class="main-row">
+      <section class="chart-section">
+        <div class="wrapper">
+          <div id="chartdiv"></div>
+        </div>
+      </section>
+      <section class="malware-stats-section">
+        <div class="malware-stats">
+          <h2>Statistiques des Malwares</h2>
+          <div id="malwareStats"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
 
+<!-- TOP 5 -->
+<section class="band top5-section conteneur layout-top5" id="top5">
+  <header>
+    <h2>Top 5 des pays les plus ciblés par les cyberattaques en 2024</h2>
+  </header>
   <div class="graph-and-legend">
-
     <!-- Graphique -->
-    <div id="chartdiv-top5" style="width: 100%; height: 500px;"></div>
-
-    <!-- Légende -->
-    <aside class="legend-card legend-dark">
-
-      <h2>Lecture du graphique</h2>
-
-      <p>
+    <figure>
+      <div id="chartdiv-top5" style="width: 100%; height: 500px;" aria-label="Graphique des cyberattaques 2024"></div>
+      <figcaption>
         Ce graphique présente les <strong>pays les plus exposés à la cybercriminalité en 2024</strong>,
         d’après l’étude comparative internationale du <em>Centre d’études européennes</em> de Sciences Po.
         L’indice représente la <strong>part relative d’incidents détectés</strong> (attaques, fraudes, activités malveillantes).
-      </p>
-
+      </figcaption>
+    </figure>
+    <!-- Légende -->
+    <aside class="legend-card legend-dark">
+      <h3>Lecture du graphique</h3>
       <ul class="bullets no-icons">
-        <li><strong>Russie</strong> — <em>58,39&nbsp;%</em> : pays le plus touché.</li>
-        <li><strong>Ukraine</strong> — <em>36,44&nbsp;%</em> : exposition très élevée.</li>
-        <li><strong>Chine</strong> — <em>27,86&nbsp;%</em> : niveau important d’activité cyber.</li>
-        <li><strong>États-Unis</strong> — <em>25,01&nbsp;%</em> : très ciblés.</li>
-        <li><strong>Nigéria</strong> — <em>21,28&nbsp;%</em> : premier pays africain du Top 5.</li>
+        <li><strong>Russie</strong> — <em>58,39 %</em> : pays le plus touché.</li>
+        <li><strong>Ukraine</strong> — <em>36,44 %</em> : exposition très élevée.</li>
+        <li><strong>Chine</strong> — <em>27,86 %</em> : niveau important d’activité cyber.</li>
+        <li><strong>États-Unis</strong> — <em>25,01 %</em> : très ciblés.</li>
+        <li><strong>Nigéria</strong> — <em>21,28 %</em> : premier pays africain du Top 5.</li>
       </ul>
-
       <div class="tip">
         Astuce : survole une barre pour afficher le <strong>pourcentage exact</strong>.
       </div>
-
     </aside>
   </div>
-
 </section>
 
-  <!-- Courbe incidents SVG -->
-  <div class="wrap">
-    <h1>Évolution des principaux types de cybercrimes signalés (2017–2024)</h1>
-    <p class="sub">
-      Données inspirées des rapports annuels du <b>FBI Internet Crime Complaint Center (IC3)</b>.<br>
-      Ce graphique montre la progression du nombre d’incidents déclarés pour les cinq catégories de cybercrimes les plus courantes
-      (<i>Phishing</i>, violation de données personnelles, non-paiement/livraison, extorsion, vol d’identité) entre 2017 et 2024.
-    </p>
-    <div class="tabs" role="tablist" aria-label="Catégories">
-      <button class="tab" role="tab" aria-selected="false" data-key="Phishing">Phishing</button>
-      <button class="tab" role="tab" aria-selected="false" data-key="Personal Data Breach">Personal Data Breach</button>
-      <button class="tab" role="tab" aria-selected="false" data-key="Non-Payment/Non-Delivery">Non-Payment/Non-Delivery</button>
-      <button class="tab" role="tab" aria-selected="false" data-key="Extortion">Extortion</button>
-      <button class="tab" role="tab" aria-selected="false" data-key="Identity Theft / Vol d'identité">Identity Theft / Vol d'identité</button>
-    </div>
-    <div class="panel">
-      <div class="row">
-        <div class="left">
-          <svg id="chart-evolution" viewBox="0 0 920 460" aria-labelledby="title desc" role="img">
-            <title id="title">Graphique de l’évolution annuelle par catégorie</title>
-            <desc id="desc">Axe X : années 2017 à 2024. Axe Y : nombre d’incidents par catégorie.</desc>
-            <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            <g id="grid" class="grid"></g>
-            <g id="axes"></g>
-            <text id="xTitle" class="axis-title" x="460" y="452" text-anchor="middle">Année</text>
-            <text id="yTitle" class="axis-title" x="60" y="18" text-anchor="start">Nombre d’incidents</text>
-            <path id="line" class="glow" fill="none" stroke="#9AD1FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <g id="points"></g>
-          </svg>
-          <p class="hint">Astuce : survolez la courbe ou les points pour afficher la valeur exacte.</p>
-        </div>
-        <div class="right">
-          <div id="stats"></div>
-        </div>
+<!-- Courbe incidents SVG -->
+<section id="serie" class="band wrap">
+  <h1>Évolution des principaux types de cybercrimes signalés (2017–2024)</h1>
+  <p class="sub">
+    Données inspirées des rapports annuels du <b>FBI Internet Crime Complaint Center (IC3)</b>.<br>
+    Ce graphique montre la progression du nombre d’incidents déclarés pour les cinq catégories de cybercrimes les plus courantes
+    (<i>Phishing</i>, violation de données personnelles, non-paiement/livraison, extorsion, vol d’identité) entre 2017 et 2024.
+  </p>
+  <div class="tabs" role="tablist" aria-label="Catégories">
+    <button class="tab" role="tab" aria-selected="false" data-key="Phishing">Phishing</button>
+    <button class="tab" role="tab" aria-selected="false" data-key="Personal Data Breach">Personal Data Breach</button>
+    <button class="tab" role="tab" aria-selected="false" data-key="Non-Payment/Non-Delivery">Non-Payment/Non-Delivery</button>
+    <button class="tab" role="tab" aria-selected="false" data-key="Extortion">Extortion</button>
+    <button class="tab" role="tab" aria-selected="false" data-key="Identity Theft / Vol d'identité">Identity Theft / Vol d'identité</button>
+  </div>
+  <div class="panel">
+    <div class="row">
+      <div class="left">
+        <svg id="chart-evolution" viewBox="0 0 920 460" aria-labelledby="title desc" role="img">
+          <title id="title">Graphique de l’évolution annuelle par catégorie</title>
+          <desc id="desc">Axe X : années 2017 à 2024. Axe Y : nombre d’incidents par catégorie.</desc>
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g id="grid" class="grid"></g>
+          <g id="axes"></g>
+          <text id="xTitle" class="axis-title" x="460" y="452" text-anchor="middle">Année</text>
+          <text id="yTitle" class="axis-title" x="60" y="18" text-anchor="start">Nombre d’incidents</text>
+          <path id="line" class="glow" fill="none" stroke="#9AD1FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <g id="points"></g>
+        </svg>
+        <p class="hint">Astuce : survolez la courbe ou les points pour afficher la valeur exacte.</p>
+      </div>
+      <div class="right">
+        <div id="stats"></div>
       </div>
     </div>
-    
   </div>
+</section>
 
-  <!-- FOOTER -->
+<!-- FOOTER -->
 <footer id="footer">
   <div class="footwrap">
     <div>
@@ -245,7 +297,6 @@
       </div>
       <div class="legalbar">© <span id="year"></span> Cyber Atlas — Tous droits réservés</div>
     </div>
-
     <div class="footcols">
       <div>
         <h4>Navigation</h4>
@@ -273,11 +324,12 @@
 <!-- Back-to-top -->
 <button class="btn to-top" id="toTop" aria-label="Remonter en haut">▲</button>
 
-
-  <!-- Scripts pour chaque graphique et projet -->
-  <script src="js/script.js"></script>
-  <script src="js/graphique.js"></script>
-  <script src="js/graphique_nb_incidents.js"></script>
-
+<!-- Scripts pour chaque graphique et projet -->
+<script src="js/script.js"></script>
+<script src="js/graphique.js"></script>
+<script src="js/graphique_nb_incidents.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", initScrollProgress);
+</script>
 </body>
 </html>
