@@ -353,7 +353,7 @@ p {
   flex-direction: column;
   gap: 0.85rem;
   min-height: 360px;
-  max-height: 600px;           /* Beaucoup plus large et haut */
+  max-height: 600px;
   box-sizing: border-box;
   overflow: hidden;
 }
