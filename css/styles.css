@@ -307,73 +307,78 @@ p {
   box-shadow: 0 0 0 3px rgba(0, 224, 255, 0.15) inset;
 }
 
-/* =========================
-   Layout carte + panneau stats
-   ========================= */
+/* ==== Layout carte + panneau stats (panneau agrandi) ==== */
 
 .main-row {
   display: grid;
-  grid-template-columns: minmax(0, 2.2fr) minmax(260px, 1.1fr);
-  gap: 1.25rem;
+  grid-template-columns: minmax(0, 2.2fr) minmax(340px, 1.25fr);
+  gap: 1.3rem;
+  align-items: start;
 }
+
 .chart-section {
   display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement */
-  min-height: 100vh;       /* prend toute la hauteur de l'écran */
+  justify-content: center;
+  align-items: center;
+  min-height: 540px;       /* Plus haut */
 }
 
 .chart-section .wrapper {
-  background: rgba(7, 10, 26, 0.94);
+  background: rgba(7, 10, 26, 0.97);
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 0.5rem;
-  min-height: 360px;
+  padding: 1rem;
+  min-height: 420px;
   display: flex;
-  justify-content: center; /* centre le chart à l'intérieur du wrapper */
+  justify-content: center;
   align-items: center;
 }
 
 #chartdiv {
   width: 100%;
-  max-width: 800px; /* optionnel : limite la largeur */
-  height: 430px;
+  max-width: 880px;
+  height: 480px;
   border: 1px solid var(--ring);
   border-radius: 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.25);
 }
 
-
-/* Panneau statistiques malwares */
+/* --- Panneau statistiques malware --- */
 .malware-stats-section {
-  background: rgba(7, 10, 26, 0.94);
+  background: rgba(7, 10, 26, 0.98);
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255,255,255,0.13);
+  padding: 1.15rem 1.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
   min-height: 360px;
+  max-height: 600px;           /* Beaucoup plus large et haut */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .malware-stats-section h2 {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
+  font-size: 1.17rem;
+  color: var(--text);
+  margin-bottom: 0.33rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
-/* Zone de texte des stats malwares */
+/* Zone texte des stats malwares */
 #malwareStats {
-  font-size: 0.85rem;
-  color: var(--muted);
-  max-height: 400px;
+  font-size: 1.01rem;
+  color: var(--muted, #bfc4d3);
+  flex: 1 1 auto;
+  max-height: 460px;           /* Texte plus haut */
   overflow-y: auto;
   padding-right: 10px;
-
   scrollbar-width: thin;
-  scrollbar-color: var(--accent) #050712;
+  scrollbar-color: var(--accent, #3686ff) #050712;
+  line-height: 1.68;
 }
 
-/* Scrollbar custom */
 #malwareStats::-webkit-scrollbar {
   width: 8px;
 }
@@ -382,20 +387,45 @@ p {
   border-radius: 5px;
 }
 #malwareStats::-webkit-scrollbar-thumb {
-  background-color: var(--accent);
+  background-color: var(--accent, #3686ff);
   border-radius: 5px;
   border: 2px solid #050712;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
   .main-row {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
+  .malware-stats-section,
+  .chart-section .wrapper {
+    min-height: 260px;
+    max-height: 400px;
+  }
+  #chartdiv {
+    height: 360px;
+    max-width: 96vw;
+    min-width: 0;
+  }
+  #malwareStats {
+    max-height: 260px;
+  }
+}
 
-  .controls {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 700px) {
+  .chart-section .wrapper,
+  .malware-stats-section {
+    padding: 0.6rem 0.2rem;
+    min-height: 130px;
+    max-height: none;
+  }
+  #chartdiv {
+    height: 180px;
+    max-width: 100vw;
+  }
+  #malwareStats {
+    max-height: 120px;
+    font-size: 0.88rem;
   }
 }
 
