@@ -278,7 +278,7 @@ fetch("data/data.json")
       statsContainer.innerHTML = "";
 
       filtered.forEach(item => {
-        if (currentZone === "Global" || item["Zone géographique"] === currentZone) {
+        if (item["Zone géographique"] === currentZone) {
           let malware = item["Type de malware"];
           const pct = item["Pourcentage"];
           const year = item["Année"];
