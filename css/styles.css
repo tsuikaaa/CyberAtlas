@@ -471,9 +471,16 @@ p {
 /* ===== À propos ===== */
 .container {
   width: 100%;
-  max-width: 1200px;         
   margin: 96px auto;         
   padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container-propos {
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
 }
