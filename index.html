@@ -22,7 +22,7 @@
 <body>
 <!-- NAVBAR -->
 <nav>
-  <a class="brand" href="#hero" aria-label="Revenir à l'accueil">
+  <a class="brand" href="#" aria-label="Revenir à l'accueil">
     <span class="logo">🛡️</span><b>CYBER ATLAS</b>
   </a>
   <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-controls="menu" aria-expanded="false">☰</button>
@@ -41,7 +41,7 @@
 <div class="progress">
   <a class="dot" href="#hero"    title="Accueil"></a>
   <a class="dot" href="#apropos" title="À propos"></a>
-  <a class="dot" href="#stats"   title="Chiffres"></a>
+  <a class="dot" href="#compteur"   title="Chiffres"></a>
   <a class="dot" href="#globe"   title="Carte"></a>
   <a class="dot" href="#top5"    title="Top 5"></a>
   <a class="dot" href="#serie"   title="Graphique"></a>
@@ -95,7 +95,7 @@
   </header>
 
   <!-- STRIP 3 COMPTEURS -->
-  <section class="strip-wrapper">
+  <section class="strip-wrapper" id="compteur">
     <p class="strip-title">
       Voici ce que la cybercriminalité représente déjà
       <span>en France</span>, <span>aux États-Unis</span> et <span>dans le monde</span>.
@@ -148,28 +148,6 @@
       </article>
     </div>
   </section>
-
-<!-- STATISTIQUES PRINCIPALES -->
-<section id="stats" class="band section-stats conteneur">
-  <div class="grille-stats">
-    <div class="panneau-stats">
-      <span class="icone-stats"></span>
-      <span class="valeur-stats">798</span>
-      <span class="etiquette-stats">CYBERATTAQUES/JOUR</span>
-    </div>
-    <div class="panneau-stats">
-      <span class="icone-stats"></span>
-      <span class="valeur-stats">534</span>
-      <span class="etiquette-stats">INFECTIONS RANSOMWARE</span>
-    </div>
-    <div class="panneau-stats">
-      <span class="icone-stats"></span>
-      <span class="valeur-stats">883 133</span>
-      <span class="etiquette-stats">VICTIMES EN 2023</span>
-    </div>
-  </div>
-  <div class="source-stats">Source : Statistica, CERT, rapports officiels</div>
-</section>
 
 <!-- GLOBE/Carte amCharts -->
 <section class="band map-section" id="globe">
@@ -241,13 +219,12 @@
   </div>
 </section>
 
-<!-- Courbe incidents SVG -->
+<!-- SÉRIE TEMPORELLE -->
 <section id="serie" class="band wrap">
   <h1>Évolution des principaux types de cybercrimes signalés (2017–2024)</h1>
   <p class="sub">
     Données inspirées des rapports annuels du <b>FBI Internet Crime Complaint Center (IC3)</b>.<br>
-    Ce graphique montre la progression du nombre d’incidents déclarés pour les cinq catégories de cybercrimes les plus courantes
-    (<i>Phishing</i>, violation de données personnelles, non-paiement/livraison, extorsion, vol d’identité) entre 2017 et 2024.
+    Ce graphique montre la progression du nombre d’incidents déclarés pour les cinq catégories de cybercrimes les plus courantes (<i>Phishing</i>, violation de données personnelles, non-paiement/livraison, extorsion, vol d’identité) entre 2017 et 2024.
   </p>
   <div class="tabs" role="tablist" aria-label="Catégories">
     <button class="tab" role="tab" aria-selected="false" data-key="Phishing">Phishing</button>
@@ -258,7 +235,7 @@
   </div>
   <div class="panel">
     <div class="row">
-      <div class="left">
+      <div class="left" style="position:relative;">
         <svg id="chart-evolution" viewBox="0 0 920 460" aria-labelledby="title desc" role="img">
           <title id="title">Graphique de l’évolution annuelle par catégorie</title>
           <desc id="desc">Axe X : années 2017 à 2024. Axe Y : nombre d’incidents par catégorie.</desc>
@@ -278,14 +255,16 @@
           <path id="line" class="glow" fill="none" stroke="#9AD1FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
           <g id="points"></g>
         </svg>
+        <div id="chart-overlay"></div>
         <p class="hint">Astuce : survolez la courbe ou les points pour afficher la valeur exacte.</p>
       </div>
-      <div class="right">
-        <div id="stats"></div>
+      <div id="stats">
+        <!-- La légende/statistiques s'affiche ici à droite --> 
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- FOOTER -->
 <footer id="footer">
@@ -302,20 +281,18 @@
         <h4>Navigation</h4>
         <a href="#hero">Accueil</a>
         <a href="#apropos">À propos</a>
-        <a href="#stats">Chiffres</a>
+        <a href="#compteur">Chiffres</a>
         <a href="#globe">Carte</a>
-        <a href="#serie">Graphique</a>
         <a href="#top5">Top pays</a>
+        <a href="#serie">Graphique</a>
       </div>
       <div>
         <h4>Légal</h4>
         <a href="mentions.html">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
       </div>
       <div>
         <h4>Ressources</h4>
-        <a href="#">Nos sources</a>
-        <a href="#">Documentation</a>
+        <a href="mentions.html#sources">Nos sources</a>
       </div>
     </div>
   </div>
@@ -328,8 +305,5 @@
 <script src="js/script.js"></script>
 <script src="js/graphique.js"></script>
 <script src="js/graphique_nb_incidents.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", initScrollProgress);
-</script>
 </body>
 </html>

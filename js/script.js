@@ -334,27 +334,32 @@ if (img) {
 }
 
 
-/************************************************************
- *  TOP 5 MALWARES - SECTION 10
- ************************************************************/
-// amCharts 5 - Top 5 pays avec drapeaux ronds (triés, sans pourcentages)
+// amCharts 5 - Top 5 pays avec drapeaux ronds, fond et couleurs personnalisées, affichage du % uniquement au hover
+
 am5.ready(function () {
+  // Création du root (base du graphique)
   const root = am5.Root.new("chartdiv-top5");
   root._logo.dispose();
 
+  // Changer le fond du graphique
+  root.container.set("background", am5.Rectangle.new(root, {
+    fill: am5.color(0x1D122D),
+    fillOpacity: 1
+  }));
 
-  // Données (Top 5 du graphique partagé)
+  // Données (Top 5)
   let data = [
-    { name: "Russie",      steps: 58.39, pictureSettings: { src: "https://flagcdn.com/w80/ru.png" } },
-    { name: "Ukraine",     steps: 36.44, pictureSettings: { src: "https://flagcdn.com/w80/ua.png" } },
-    { name: "Chine",       steps: 27.86, pictureSettings: { src: "https://flagcdn.com/w80/cn.png" } },
-    { name: "États-Unis",  steps: 25.01, pictureSettings: { src: "https://flagcdn.com/w80/us.png" } },
-    { name: "Nigéria",     steps: 21.28, pictureSettings: { src: "https://flagcdn.com/w80/ng.png" } }
+    { name: "Russie",     steps: 58.39, pictureSettings: { src: "https://flagcdn.com/w80/ru.png" } },
+    { name: "Ukraine",    steps: 36.44, pictureSettings: { src: "https://flagcdn.com/w80/ua.png" } },
+    { name: "Chine",      steps: 27.86, pictureSettings: { src: "https://flagcdn.com/w80/cn.png" } },
+    { name: "États-Unis", steps: 25.01, pictureSettings: { src: "https://flagcdn.com/w80/us.png" } },
+    { name: "Nigéria",    steps: 21.28, pictureSettings: { src: "https://flagcdn.com/w80/ng.png" } }
   ];
 
-  // Tri du plus grand au plus petit
+  // Trier du plus grand au plus petit
   data.sort((a, b) => b.steps - a.steps);
 
+  // Création du graphique XY
   const chart = root.container.children.push(
     am5xy.XYChart.new(root, {
       panX: false,
@@ -366,8 +371,7 @@ am5.ready(function () {
     })
   );
 
-
-  // Axe Y (catégories) – inversé pour que le plus grand soit en haut
+  // Axe Y (catégories), inversé (le plus grand en haut)
   const yRenderer = am5xy.AxisRendererY.new(root, {
     minorGridEnabled: true,
     inversed: true
@@ -382,14 +386,36 @@ am5.ready(function () {
     })
   );
 
-  // Axe X (valeurs)
-  const xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 80, minorGridEnabled: true });
-  const xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, { min: 0, renderer: xRenderer }));
+  // Couleur personnalisée pour les noms des pays
+  yAxis.get("renderer").labels.template.setAll({
+    fill: am5.color(0xbffffd),
+    fontWeight: "bold"
+  });
 
-  // Série
+  // Axe X (valeurs)
+  const xRenderer = am5xy.AxisRendererX.new(root, {
+    minGridDistance: 80,
+    minorGridEnabled: true
+  });
+  const xAxis = chart.xAxes.push(
+    am5xy.ValueAxis.new(root, { min: 0, renderer: xRenderer })
+  );
+
+  // Couleur personnalisée pour les nombres
+  xAxis.get("renderer").labels.template.setAll({
+    fill: am5.color(0xbffffd),
+    fontWeight: "bold"
+  });
+
+  // *** NE PAS AJOUTER DE '%' SUR LES LABELS DE L'AXE ***
+  // xAxis.get("renderer").labels.template.adapters.add("text", function(text, target) {
+  //   return text + " %";
+  // });
+
+  // Création de la série (les barres du classement)
   const series = chart.series.push(
     am5xy.ColumnSeries.new(root, {
-      name: "WCIoverall",
+      name: "Top5",
       xAxis: xAxis,
       yAxis: yAxis,
       valueXField: "steps",
@@ -397,15 +423,16 @@ am5.ready(function () {
       sequencedInterpolation: true,
       calculateAggregates: true,
       maskBullets: false,
+      // Tooltip avec % uniquement au survol !
       tooltip: am5.Tooltip.new(root, {
         dy: -30,
         pointerOrientation: "vertical",
-        labelText: "{categoryY}: {valueX.formatNumber('0.00')}"
+        labelText: "{categoryY}: {valueX.formatNumber('0.00')}%"
       })
     })
   );
 
-  // Style des colonnes + dégradé bleu-violet
+  // Style des colonnes (barres) avec dégradé et arrondi
   series.columns.template.setAll({
     strokeOpacity: 0,
     cornerRadiusBR: 10,
@@ -417,20 +444,28 @@ am5.ready(function () {
     fillGradient: am5.LinearGradient.new(root, {
       rotation: 0,
       stops: [
-        { color: am5.color(0x00e5ff) }, // bleu clair
-        { color: am5.color(0x9b5de5) }  // violet néon
+        { color: am5.color(0x00e5ff) },
+        { color: am5.color(0x9b5de5) }
       ]
     })
   });
 
-  let currentlyHovered;
+  // (Ne pas afficher le % comme label direct sur les barres)
+  /*
+  series.columns.template.children.push(am5.Label.new(root, {
+    text: "{valueX.formatNumber('0.00')} %",
+    centerX: am5.p100,
+    centerY: am5.p50,
+    fill: am5.color(0xffffff),
+    fontSize: 18,
+    populateText: true
+  }));
+  */
 
-  series.columns.template.events.on("pointerover", function (e) {
-    handleHover(e.target.dataItem);
-  });
-  series.columns.template.events.on("pointerout", function () {
-    handleOut();
-  });
+  // Hover animation (effet barre survol)
+  let currentlyHovered;
+  series.columns.template.events.on("pointerover", function (e) { handleHover(e.target.dataItem); });
+  series.columns.template.events.on("pointerout", function () { handleOut(); });
 
   function handleHover(dataItem) {
     if (dataItem && currentlyHovered != dataItem) {
@@ -457,7 +492,7 @@ am5.ready(function () {
     }
   }
 
-  // Bullet drapeau rond
+  // Ajout des drapeaux ronds sur chaque barre
   const circleTemplate = am5.Template.new({});
   series.bullets.push(function (root, series, dataItem) {
     const bulletContainer = am5.Container.new(root, {});
@@ -480,10 +515,11 @@ am5.ready(function () {
     return am5.Bullet.new(root, { locationX: 0, sprite: bulletContainer });
   });
 
-  // Données
+  // Charger les données sur la série et l'axe Y (catégories)
   series.data.setAll(data);
   yAxis.data.setAll(data);
 
+  // Curseur interactif sur le graphique
   const cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
   cursor.lineX.set("visible", false);
   cursor.lineY.set("visible", false);
@@ -492,14 +528,16 @@ am5.ready(function () {
     if (dataItem) handleHover(dataItem); else handleOut();
   });
 
+  // Animation d'apparition
   series.appear();
   chart.appear(1000, 100);
 });
 
 
 /************************************************************
-Evolution des malwares - SECTION 11
- ************************************************************/
+ * SECTION 10 — GRAPHIQUE LIGNES NOMBRE D’INCIDENTS PAR CATÉGORIE
+ * ************************************************************/
+
 const data = {
   "Année": [2017,2018,2019,2020,2021,2022,2023,2024],
   "Phishing": [25344,26379,114702,241342,323972,300497,298878,193407],
@@ -515,26 +553,19 @@ const palette = {
   "Extortion": "#D55E00",
   "Identity Theft / Vol d'identité": "#CC79A7"
 };
-
 const years = data["Année"];
 const cats = Object.keys(data).filter(k => k !== "Année");
 
-const W=920,H=440,PAD_L=60,PAD_R=24,PAD_T=24,PAD_B=44;
+const W=1160, H=480, PAD_L=96, PAD_R=48, PAD_T=36, PAD_B=64;
 const innerW=W-PAD_L-PAD_R,innerH=H-PAD_T-PAD_B;
-
-const svg=document.getElementById('chart'),
-axesG=document.getElementById('axes'),
-gridG=document.getElementById('grid'),
-linePath=document.getElementById('line'),
-pointsG=document.getElementById('points'),
-stats=document.getElementById('stats');
-
+const svg=document.getElementById('chart'),axesG=document.getElementById('axes'),gridG=document.getElementById('grid'),
+  linePath=document.getElementById('line'),pointsG=document.getElementById('points'),stats=document.getElementById('stats');
 const tabButtons=Array.from(document.querySelectorAll('.tab'));
 
 function format(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
 function scale(d0,d1,r0,r1){const m=(r1-r0)/(d1-d0);return x=>r0+(x-d0)*m;}
 
-// repositionne dynamiquement le titre Y
+/* >>> place dynamiquement le titre Y après les étiquettes Y */
 function placeYAxisTitle() {
   const yTitle = document.getElementById('yTitle');
   let maxW = 0;
@@ -548,85 +579,81 @@ function placeYAxisTitle() {
 }
 
 function drawGridAndAxes(yMax){
-  axesG.innerHTML=''; gridG.innerHTML='';
+  axesG.innerHTML='';gridG.innerHTML='';
   const sx=scale(years[0],years[years.length-1],PAD_L,PAD_L+innerW);
   const sy=scale(0,yMax,PAD_T+innerH,PAD_T);
   const steps=6;
-
   for(let i=0;i<=steps;i++){
-    const v=yMax*i/steps, y=sy(v);
+    const v=yMax*i/steps,y=sy(v);
     const grid=document.createElementNS('http://www.w3.org/2000/svg','line');
-    grid.setAttribute('x1',PAD_L); grid.setAttribute('x2',PAD_L+innerW);
-    grid.setAttribute('y1',y); grid.setAttribute('y2',y);
-    grid.setAttribute('stroke','#232a4d'); gridG.appendChild(grid);
+    grid.setAttribute('x1',PAD_L);grid.setAttribute('x2',PAD_L+innerW);
+    grid.setAttribute('y1',y);grid.setAttribute('y2',y);
+    grid.setAttribute('stroke','#232a4d');gridG.appendChild(grid);
+
+    if (Math.round(v) === 0) continue;
 
     const label=document.createElementNS('http://www.w3.org/2000/svg','text');
     label.setAttribute('x',PAD_L-8);
     label.setAttribute('y',y+4);
     label.setAttribute('text-anchor','end');
     label.setAttribute('class','axis ytick');
+    label.setAttribute('fill','#bffffd');  // couleur modifiée
     label.textContent=format(Math.round(v));
     axesG.appendChild(label);
   }
-
   years.forEach(yr=>{
     const x=scale(years[0],years[years.length-1],PAD_L,PAD_L+innerW)(yr);
     const tick=document.createElementNS('http://www.w3.org/2000/svg','line');
-    tick.setAttribute('x1',x); tick.setAttribute('x2',x);
-    tick.setAttribute('y1',PAD_T+innerH); tick.setAttribute('y2',PAD_T+innerH+6);
-    tick.setAttribute('stroke','#232a4d'); axesG.appendChild(tick);
+    tick.setAttribute('x1',x);tick.setAttribute('x2',x);
+    tick.setAttribute('y1',PAD_T+innerH);tick.setAttribute('y2',PAD_T+innerH+6);
+    tick.setAttribute('stroke','#232a4d');axesG.appendChild(tick);
 
     const text=document.createElementNS('http://www.w3.org/2000/svg','text');
-    text.setAttribute('x',x); text.setAttribute('y',PAD_T+innerH+22);
+    text.setAttribute('x',x);text.setAttribute('y',PAD_T+innerH+22);
     text.setAttribute('text-anchor','middle');
     text.setAttribute('class','axis');
-    text.textContent=yr; axesG.appendChild(text);
+    text.setAttribute('fill','#bffffd'); // couleur modifiée
+    text.textContent=yr;
+    axesG.appendChild(text);
   });
 
   placeYAxisTitle();
 }
 
 function render(cat){
-  const values=data[cat], color=palette[cat]||'#9AD1FF';
+  const values=data[cat],color=palette[cat]||'#9AD1FF';
   const yMax=Math.max(...values)*1.18;
   const sx=scale(years[0],years[years.length-1],PAD_L,PAD_L+innerW);
   const sy=scale(0,yMax,PAD_T+innerH,PAD_T);
   drawGridAndAxes(yMax);
 
-  let d='';
-  values.forEach((v,i)=>{
-    const x=sx(years[i]), y=sy(v);
-    d += (i ? ` L ${x} ${y}` : `M ${x} ${y}`);
-  });
-  linePath.setAttribute('d',d);
-  linePath.setAttribute('stroke',color);
-  linePath.style.strokeDasharray='2000';
-  linePath.style.strokeDashoffset='2000';
-  linePath.getBoundingClientRect();
-  linePath.style.transition='stroke-dashoffset 1200ms ease, stroke 200ms ease';
-  linePath.style.strokeDashoffset='0';
+  // ligne
+  let d='';values.forEach((v,i)=>{const x=sx(years[i]),y=sy(v);d+=(i?` L ${x} ${y}`:`M ${x} ${y}`);});
+  linePath.setAttribute('d',d);linePath.setAttribute('stroke',color);
+  linePath.style.strokeDasharray='2000';linePath.style.strokeDashoffset='2000';linePath.getBoundingClientRect();
+  linePath.style.transition='stroke-dashoffset 1200ms ease, stroke 200ms ease';linePath.style.strokeDashoffset='0';
 
+  // points + tooltips
   pointsG.innerHTML='';
   values.forEach((v,i)=>{
-    const x=sx(years[i]), y=sy(v);
+    const x=sx(years[i]),y=sy(v);
     const g=document.createElementNS('http://www.w3.org/2000/svg','g');
 
     const hit=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    hit.setAttribute('cx',x); hit.setAttribute('cy',y);
-    hit.setAttribute('r',12); hit.setAttribute('fill','transparent');
+    hit.setAttribute('cx',x);hit.setAttribute('cy',y);hit.setAttribute('r',12);hit.setAttribute('fill','transparent');
 
     const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    c.setAttribute('cx',x); c.setAttribute('cy',y);
-    c.setAttribute('r',4); c.setAttribute('fill',color);
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',4);c.setAttribute('fill',color);
     c.style.animation='pulse 1600ms ease-in-out infinite';
 
     const tip=document.createElementNS('http://www.w3.org/2000/svg','text');
-    tip.setAttribute('x',x+8); tip.setAttribute('y',y-10);
-    tip.setAttribute('fill','#FFFFFF'); tip.setAttribute('font-size','12');
-    tip.setAttribute('opacity','0'); tip.setAttribute('class','tip');
+    tip.setAttribute('x',x+8);tip.setAttribute('y',y-10);
+    tip.setAttribute('fill','#bffffd'); // couleur modifiée pour tooltip
+    tip.setAttribute('font-size','12');tip.setAttribute('opacity','0');
+    tip.setAttribute('class','tip');
     tip.textContent=years[i]+': '+format(v);
 
-    const showTip=()=>{
+    const showTip=()=>{ 
       const rightEdge = PAD_L + innerW;
       const switchSide = x > (rightEdge - 120);
       tip.setAttribute('x', switchSide ? (x-8) : (x+8));
@@ -635,15 +662,18 @@ function render(cat){
     };
     const hideTip=()=>tip.setAttribute('opacity','0');
 
-    g.appendChild(hit); g.appendChild(c); g.appendChild(tip);
+    g.appendChild(hit);g.appendChild(c);g.appendChild(tip);
     g.addEventListener('mouseenter',showTip);
     g.addEventListener('mouseleave',hideTip);
+    g.addEventListener('focusin',showTip);
+    g.addEventListener('focusout',hideTip);
     pointsG.appendChild(g);
   });
 
+  // panneau de stats
   const total = values.reduce((a,b)=>a+b,0);
   const latest = values[values.length-1];
-  const peak = Math.max(...values);
+  const peak   = Math.max(...values);
   const peakYear = years[values.indexOf(peak)];
 
   stats.innerHTML = `
@@ -664,10 +694,12 @@ tabButtons.forEach(btn=>{
     e.currentTarget.setAttribute('aria-selected','true');
     render(e.currentTarget.dataset.key);
   });
+  btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();btn.click();}});
 });
 
 tabButtons[0].setAttribute('aria-selected','true');
 render(cats[0]);
+
 
 /* Intro */
 const intro = document.getElementById('intro');
@@ -736,50 +768,6 @@ function initScrollProgress() {
 }
 
 
- // ======= COMPTEURS “BRIQUES” =======
-  function createDigitBoxes(container, length){
-    container.innerHTML = "";
-    for(let i=0;i<length;i++){
-      const box = document.createElement("div");
-      box.className = "digit-box";
-      box.textContent = "0";
-      container.appendChild(box);
-    }
-  }
-
-  function animateDigits(containerId, finalNumber, duration){
-    const container = document.getElementById(containerId);
-    const targetStr = finalNumber.toString();
-    const len = targetStr.length;
-    createDigitBoxes(container, len);
-
-    const boxes = Array.from(container.querySelectorAll(".digit-box"));
-    const startTime = performance.now();
-
-    function step(now){
-      const progress = Math.min((now - startTime)/duration,1);
-      const current = Math.floor(finalNumber * progress);
-      const currentStr = current.toString().padStart(len,"0");
-      boxes.forEach((box,idx)=>{
-        const newDigit = currentStr[idx];
-        if(box.textContent !== newDigit){
-          box.textContent = newDigit;
-        }
-      });
-      if(progress < 1){
-        requestAnimationFrame(step);
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  document.addEventListener("DOMContentLoaded", ()=>{
-    animateDigits("france-digits", 348000, 1300);
-    animateDigits("usa-digits",    859532, 1300);
-    animateDigits("world-digits",   10500, 1400);
-  });
-
-  
 
   // ======= COMPTEURS “BRIQUES” =======
 function createDigitBoxes(container, length){
@@ -819,3 +807,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
   animateDigits("usa-digits",    859532, 1300);
   animateDigits("world-digits",   10500, 1400);
 });
+
+// Burger menu mobile
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+
+burger.addEventListener('click', () => {
+  menu.classList.toggle('show');
+});
+
+// Mettre l'année courante dans le footer
+document.getElementById('year').textContent = new Date().getFullYear();

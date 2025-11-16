@@ -1,277 +1,144 @@
-/* =============================
-   TOP 5 PAYS – BAR CHART AREA
-============================= */
-
-.layout {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem 3rem;
-  display: grid;
-  grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1.1fr);
-  gap: 1.5rem;
+:root {
+  --bg: #0b0e18;
+  --panel: #12172b;
+  --text: #F7F7FB;
+  --sub: #C9CCDC;
+  --accent: #9AD1FF;
+  --grid: #232a4d;
+  --muted: #9aa1c6;
 }
 
-.chart-area {
-  background: rgba(18, 26, 51, .92);
-  border-radius: 1.3rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.6rem 1.7rem 1.4rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.chart-area > h1 {
-  font-size: 1.4rem;
-  margin-bottom: 0.9rem;
-}
-
-.axis-headers {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
-}
-
-.axis-y-title {
-  font-size: 0.8rem;
-}
-
-/* Ici, le deuxième chartdiv (top 5 pays) */
-.chart-area #chartdiv {
-  width: 100%;
-  height: 380px; /* diagramme barres */
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-.axis-x-title {
-  display: inline-block;
-  margin-top: 0.4rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-}
-
-.source {
-  margin-top: 0.7rem;
-  font-size: 0.76rem;
-}
-
-.source a {
-  font-weight: 500;
-}
-
-/* =============================
-   LÉGENDE / RADAR CARD
-============================= */
-
-.legend-card {
-  background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.08), rgba(8, 11, 25, 0.96));
-  border-radius: 1.3rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.4rem 1.5rem 1.3rem;
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-}
-
-.legend-card h2 {
-  font-size: 1.1rem;
-  margin-bottom: 0.7rem;
-}
-
-.bullets {
-  list-style: none;
-  padding-left: 0;
-  margin: 0.7rem 0 0.7rem;
-}
-
-.bullets li {
-  font-size: 0.9rem;
-  margin-bottom: 0.45rem;
-  color: var(--muted);
-}
-
-.bullets strong {
+body {
+  background: var(--bg);
   color: var(--text);
+  font-family: Inter, ui-sans-serif, -apple-system, Segoe UI, Roboto, Arial;
 }
 
-.tip {
-  margin-top: 0.8rem;
-  padding: 0.6rem 0.75rem;
-  border-radius: 0.7rem;
-  border: 1px dashed rgba(0, 229, 255, 0.5);
-  background: rgba(0, 229, 255, 0.06);
-  font-size: 0.82rem;
-  color: #e6faff;
+.band.wrap {
+  max-width: 1040px;
+  margin: 28px auto;
+  padding: 0 16px;
 }
-
-/* Radar animation */
-
-.anim-card {
-  position: absolute;
-  right: -10px;
-  bottom: -20px;
-  width: 180px;
-  opacity: 0.7;
-  pointer-events: none;
+.panel {
+  background: var(--panel);
+  border: 1px solid #1b2140;
+  border-radius: 16px;
+  padding: 14px;
+  overflow: hidden;
 }
-
-.radar-anim {
-  opacity: 0.9;
-}
-
-.radar-ring {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.08);
-  stroke-width: 1;
-}
-
-.radar-dot {
-  fill: var(--accent);
-  filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.8));
-}
-
-.sweep {
-  transform-origin: 120px 120px;
-  animation: radar-sweep 4s linear infinite;
-}
-
-@keyframes radar-sweep {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* =============================
-   SVG COURBE IC3 (wrap)
-============================= */
-
-.wrap {
-  max-width: 1200px;
-  margin: 0 auto 3rem;
-  padding: 0 1.5rem;
-}
-
-.wrap h1 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.wrap .sub {
-  margin-bottom: 1.1rem;
-  font-size: 0.9rem;
-}
-
-/* Tabs */
 
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.9rem;
+  gap: 10px;
+  margin-bottom: 12px;
 }
-
 .tab {
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(8, 11, 25, 0.96);
-  color: var(--muted);
-  padding: 0.35rem 0.9rem;
-  font-size: 0.82rem;
-  cursor: pointer;
-  text-transform: none;
-  transition: background 0.18s ease-out, border-color 0.18s ease-out, color 0.18s ease-out,
-    transform 0.08s ease-out;
-}
-
-.tab:hover {
+  background: #0e1326;
   color: var(--text);
-  border-color: var(--accent);
-  transform: translateY(-1px);
+  border: 2px solid #1b2550;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: .15s;
+  outline: none;
 }
-
 .tab[aria-selected="true"] {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #050712;
-  border-color: transparent;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(154,209,255,.18) inset;
 }
 
-/* Panel layout */
-
-.panel {
-  background: rgba(18, 26, 51, .92);
-  border-radius: 1.3rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.4rem 1.6rem;
-  box-shadow: var(--shadow-soft);
-}
-
+/* Côte à côte TOUT LE TEMPS, scroll horizontal si trop étroit */
 .row {
-  display: grid;
-  grid-template-columns: minmax(0, 2.1fr) minmax(240px, 1fr);
-  gap: 1.1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
   align-items: flex-start;
+  overflow-x: auto;
 }
 
 .left {
+  flex: 1 1 0;
   min-width: 0;
+  max-width: 100%;
+  position: relative;
 }
 
-.right {
-  min-width: 0;
+/* SVG & courbes */
+svg {
+  width:100%;
+  height:auto;
+  display:block;
+}
+.hint {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #CFE4FF;
 }
 
-#chart {
-  width: 100%;
-  height: auto;
-  max-width: 920px;
+/* Légende/statistiques à droite */
+#stats {
+  min-width: 240px;
+  max-width: 320px;
+  margin-top: 0;
+  align-self: flex-start;
+  background: rgba(36, 51, 72, 0.96);
+  border-radius: 8px;
+  padding: 14px 18px 10px 18px;
+  box-shadow: 0 2px 6px #08213e1a;
+  font-size: 15px;
+  color: var(--text);
+  margin-left: 0;
+}
+#stats h3 {
+  margin: 0 0 11px 0;
+  font-size: 19px;
+  letter-spacing: .01em;
+  font-weight: bold;
+}
+#stats .metric {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #2a3566;
+  font-size: 16px;
+}
+#stats .metric:last-child {
+  border-bottom: none;
+}
+#stats .k {
+  color: var(--muted);
+  font-size: 15px;
+}
+#stats .sub {
+  color: var(--sub);
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-/* Axes, grid & line */
-
-.grid line {
-  stroke: rgba(255, 255, 255, 0.05);
+/* SVG axes/grille */
+.axis text {
+  fill: #EAF3FF;
+  font-size:12px;
+  font-weight:500;
 }
-
-#axes path,
-#axes line {
-  stroke: rgba(255, 255, 255, 0.38);
-}
-
 .axis-title {
-  fill: var(--muted);
-  font-size: 0.8rem;
+  fill: #D6E9FF;
+  font-size:12px;
+  letter-spacing:.2px;
+  font-weight:600;
 }
-
+.grid line {
+  stroke: var(--grid);
+}
+@keyframes pulse {
+  0% { r:4; opacity:1; }
+  50% { r:6; opacity:0.75; }
+  100% { r:4; opacity:1; }
+}
 .glow {
   filter: url(#glow);
 }
 
-#points circle {
-  fill: var(--accent);
-  stroke: #050712;
-  stroke-width: 2;
-}
-
-.hint {
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  color: var(--muted);
-}
-
-/* Stats colonne droite */
-
-#stats {
-  font-size: 0.86rem;
-  color: var(--muted);
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
