@@ -714,58 +714,53 @@ title?.addEventListener('click', ()=>{
   title.classList.add('burst');
 });
 
-/* =============================
-   Pastilles & liens actifs au scroll
-   ============================= */
 function initScrollProgress() {
-  const sections = document.querySelectorAll("section.band, footer#footer");
+  // Cible toutes les sections à surveiller + le footer
+  const sections = document.querySelectorAll("section[id], footer#footer"); // Id obligatoire
   const navLinks = document.querySelectorAll(".navlinks a[href^='#']");
   const dots = document.querySelectorAll(".progress .dot");
 
   if (!sections.length) return;
 
+  // Mapping id<section> -> nav link
   const mapIdToNav = {};
   navLinks.forEach(a => {
     const id = a.getAttribute("href");
-    if (id && id.startsWith("#")) {
-      mapIdToNav[id] = a;
-    }
+    if (id && id.startsWith("#")) mapIdToNav[id] = a;
   });
 
+  // Mapping id<section> -> dot
   const mapIdToDot = {};
-  // ORDRE CORRIGÉ
-  const sectionOrder = ["#hero", "#apropos", "#stats", "#globe", "#top5", "#serie", "#footer"];
-
-  sectionOrder.forEach((id, index) => {
-    const dot = dots[index];
-    if (dot) mapIdToDot[id] = dot;
+  dots.forEach(dot => {
+    const id = dot.getAttribute("href");
+    if (id && id.startsWith("#")) mapIdToDot[id] = dot;
   });
 
+  // Observe pour chaque section présente
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const id = "#" + entry.target.id;
-        // Active nav
+        // Active le lien nav s'il existe
         navLinks.forEach(l => l.classList.remove("active"));
-        if (mapIdToNav[id]) {
-          mapIdToNav[id].classList.add("active");
-        }
-        // Active dot
+        if (mapIdToNav[id]) mapIdToNav[id].classList.add("active");
+        // Active le dot s'il existe
         dots.forEach(d => d.classList.remove("active"));
-        if (mapIdToDot[id]) {
-          mapIdToDot[id].classList.add("active");
-        }
+        if (mapIdToDot[id]) mapIdToDot[id].classList.add("active");
       });
     },
     {
       root: null,
-      threshold: 0.5,
+      threshold: 0.5, // Ajuste si besoin (0.3 ou 0.1 si sections courtes)
     }
   );
 
   sections.forEach(section => observer.observe(section));
 }
+
+// À appeler au chargement
+initScrollProgress();
 
 
 
