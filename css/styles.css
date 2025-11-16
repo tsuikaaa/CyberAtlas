@@ -118,19 +118,22 @@ p {
 
 .map-section {
   padding: 40px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .map {
-  width: 95%;
+  width: 92vw;
   margin: 0 auto;
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(155, 93, 229, 0.08));
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 1.5rem;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Toolbar (Globe / Années / Zone) */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -142,9 +145,11 @@ p {
   background: rgba(10, 15, 30, 0.8);
   padding: 10px 12px;
   border-radius: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
-/* boutons & selects de la toolbar */
 .controls button,
 .controls select {
   font: 700 13px/1 "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -154,9 +159,9 @@ p {
   border-radius: 10px;
   padding: 8px 10px;
   cursor: pointer;
+  min-width: 0;
 }
 
-/* groupe d'années */
 .year-toggle {
   display: flex;
   flex-wrap: wrap;
@@ -172,7 +177,6 @@ p {
     color 0.18s ease-out,
     border-color 0.18s ease-out,
     transform 0.08s ease-out;
-
   background: rgba(9, 12, 32, 0.9);
   border: 1px solid var(--ring);
   color: var(--muted);
@@ -186,7 +190,6 @@ p {
   transform: translateY(-1px);
 }
 
-/* style actif */
 .year-btn.active,
 .year-btn[aria-pressed="true"] {
   outline: 2px solid var(--accent);
@@ -196,7 +199,6 @@ p {
   border-color: var(--ring);
 }
 
-/* filtre par zone */
 .zone-filter {
   display: flex;
   align-items: center;
@@ -217,9 +219,9 @@ p {
   padding: 8px 10px;
   font-size: 0.8rem;
   outline: none;
+  min-width: 0;
 }
 
-/* bouton globe */
 .globe-btn {
   border-radius: 999px;
   border: 1px solid var(--accent);
@@ -241,19 +243,21 @@ p {
 }
 
 /* ==== Layout carte + panneau stats (panneau agrandi) ==== */
-
 .main-row {
   display: grid;
   grid-template-columns: minmax(0, 2.2fr) minmax(340px, 1.25fr);
   gap: 1.3rem;
   align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chart-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 540px;       /* Plus haut */
+  min-height: 540px;
+  width: 100%;
 }
 
 .chart-section .wrapper {
@@ -265,6 +269,9 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 #chartdiv {
@@ -274,6 +281,7 @@ p {
   border: 1px solid var(--ring);
   border-radius: 16px;
   box-shadow: 0 12px 34px rgba(0,0,0,0.25);
+  box-sizing: border-box;
 }
 
 /* --- Panneau statistiques malware --- */
@@ -289,6 +297,7 @@ p {
   max-height: 600px;
   box-sizing: border-box;
   overflow: hidden;
+  width: 100%;
 }
 
 .malware-stats-section h2 {
@@ -304,12 +313,13 @@ p {
   font-size: 1.01rem;
   color: var(--muted, #bfc4d3);
   flex: 1 1 auto;
-  max-height: 460px;           /* Texte plus haut */
+  max-height: 460px;
   overflow-y: auto;
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: var(--accent, #3686ff) #050712;
   line-height: 1.68;
+  box-sizing: border-box;
 }
 
 #malwareStats::-webkit-scrollbar {
@@ -324,6 +334,10 @@ p {
   border-radius: 5px;
   border: 2px solid #050712;
 }
+
+/* ======================
+   Responsive
+====================== */
 
 @media (max-width: 1300px) {
   .main-row {
@@ -346,19 +360,68 @@ p {
 }
 
 @media (max-width: 700px) {
+  .map-section {
+    padding: 18px 0;
+  }
+  .map {
+    width: 98vw;
+    max-width: 98vw;
+    padding: 0.7rem;
+    border-radius: 0.7rem;
+    min-width: 0;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 6px 5px;
+    border-radius: 8px;
+  }
   .chart-section .wrapper,
   .malware-stats-section {
     padding: 0.6rem 0.2rem;
     min-height: 130px;
     max-height: none;
+    border-radius: 7px;
   }
   #chartdiv {
-    height: 180px;
+    height: 280px;   /* plus grand pour le mobile */
     max-width: 100vw;
+    border-radius: 8px;
   }
   #malwareStats {
     max-height: 120px;
     font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .map-section {
+    padding: 9px 0;
+  }
+  .map {
+    width: 99vw;
+    max-width: 99vw;
+    padding: 0.2rem;
+    border-radius: 0.43rem;
+  }
+  .main-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100vw;
+  }
+  .chart-section .wrapper,
+  .malware-stats-section {
+    padding: 0.25rem 0;
+    border-radius: 5px;
+  }
+  #chartdiv {
+    height: 220px; /* plus grand pour iPhone ou petits téléphones */
+    border-radius: 8px;
+  }
+  #malwareStats {
+    max-height: 80px;
+    font-size: 0.78rem;
   }
 }
 
