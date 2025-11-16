@@ -380,9 +380,12 @@ p {
 }
 
 
-/* =============================
-   RESPONSIVE
-============================= */
+.layout-top5 {
+  max-width: 1200px;         
+  margin: 96px auto;         
+  padding: 0 24px;
+  display: block;
+}
 
 @media (max-width: 1024px) {
   .grille-stats {
@@ -468,13 +471,11 @@ p {
 /* ===== À propos ===== */
 .container {
   width: 100%;
-  max-width: 1200px;         /* Largeur maximale du container */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
-  display: flex;              /* Flex pour centrer */
-  justify-content: center;    /* Centre le contenu horizontalement */
+  max-width: 1200px;         
+  margin: 96px auto;         
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .about {

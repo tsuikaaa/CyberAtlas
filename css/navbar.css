@@ -1,112 +1,112 @@
 /* ===== NAVBAR ===== */
-nav {
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 70px;
-  z-index: 220;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5vw;
-  background: rgba(7, 11, 23, 0.72);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--ring);
+nav{
+  position:fixed; inset:0 0 auto 0; height:70px; z-index:220;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5vw; background:rgba(7,11,23,.72); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--ring);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
+.brand{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
 }
 
-.brand .logo {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 14px rgba(0, 224, 255, 0.35);
+.brand .logo{
+  width:28px; height:28px; border-radius:8px; display:grid; place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  box-shadow:0 0 14px rgba(0,224,255,.35);
 }
 
-.brand b {
-  font: 900 18px 'Share Tech Mono', monospace;
-  color: #fff;
-  letter-spacing: 0.02em;
+.brand b{
+  font:900 18px 'Share Tech Mono',monospace; color:#fff; letter-spacing:.02em;
 }
 
-.navlinks {
-  display: flex;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* === LIENS DU MENU AVEC ESPACEMENT + TAILLE IDENTIQUE === */
+.navlinks{
+  display:flex;
+  margin:0;
+  padding:0;
 }
 
-.navlinks a {
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 800;
-  padding: 10px 12px;
-  border-radius: 10px;
+/* chaque élément du menu */
+.navlinks li{
+  list-style:none;
+  padding:0 10px;                 /* MARGIN/PADDING ENTRE LES SECTIONS */
+  position:relative;
 }
 
-.navlinks a:hover {
-  color: var(--accent);
+/* petite barre de séparation entre les sections */
+.navlinks li + li{
+  border-left:1px solid rgba(255,255,255,0.20);
 }
 
-.navlinks a.active {
-  background: rgba(0, 224, 255, 0.12);
-  border: 1px solid var(--ring);
+/* lien cliquable */
+.navlinks a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:120px;
+  height:40px;
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:800;
+  border-radius:999px;
+  padding:0 8px;
+  transition:background .15s ease, color .15s ease, transform .1s ease;
 }
 
-.burger {
-  display: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  border: 1px solid var(--ring);
-  background: #0f183a;
-  color: #cfe0ff;
-  place-items: center;
-  font-size: 22px;
+.navlinks a:hover{
+  color:var(--accent);
+  transform:translateY(-1px);
 }
 
-.spacer {
-  height: 70px;
+.navlinks a.active{
+  background:rgba(0,224,255,.12);
+  border:1px solid var(--ring);
 }
 
-@media (max-width: 900px) {
-  .burger {
-    display: grid;
+/* --- Version mobile --- */
+.burger{
+  display:none; width:42px; height:42px; border-radius:12px; border:1px solid var(--ring);
+  background:#0f183a; color:#cfe0ff; place-items:center; font-size:22px;
+}
+
+.spacer{height:70px;}
+
+@media (max-width:900px){
+  .burger{display:grid;}
+
+  .navlinks{
+    position:fixed; inset:70px 0 auto 0;
+    flex-direction:column;
+    background:rgba(7,11,23,.9);
+    backdrop-filter:blur(10px);
+    padding:8px;
+    border-bottom:1px solid var(--ring);
+    transform:translateY(-120%);
+    transition:transform .35s ease;
+    z-index:200;
   }
 
-  .navlinks {
-    position: fixed;
-    inset: 70px 0 auto 0;
-    flex-direction: column;
-    gap: 0;
-    background: rgba(7, 11, 23, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 8px;
-    border-bottom: 1px solid var(--ring);
-    transform: translateY(-120%);
-    transition: transform 0.35s ease;
-    z-index: 200;
+  .navlinks.open{
+    transform:translateY(0);
   }
 
-  .navlinks.open {
-    transform: translateY(0);
+  .navlinks li{
+    padding:0;
+    border-left:none;            /* on enlève les barres verticales en mobile */
   }
 
-  .navlinks li {
-    border-radius: 12px;
-    overflow: hidden;
+  .navlinks li + li{
+    margin-top:4px;
+    border-top:1px solid rgba(255,255,255,0.18);
   }
 
-  .navlinks a {
-    display: block;
-    padding: 14px 16px;
+  .navlinks a{
+    width:100%;
+    max-width:none;
+    min-width:0;
+    height:auto;
+    padding:14px 16px;
+    border-radius:12px;
   }
 }

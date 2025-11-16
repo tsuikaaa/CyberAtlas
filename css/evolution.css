@@ -15,9 +15,9 @@ body {
 }
 
 .band.wrap {
-  max-width: 1040px;
-  margin: 28px auto;
-  padding: 0 16px;
+  max-width: 1200px;        
+  margin: 96px auto 120px; 
+  padding: 0 24px;
 }
 .panel {
   background: var(--panel);
