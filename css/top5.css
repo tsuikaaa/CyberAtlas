@@ -25,6 +25,7 @@
 
 /* Graphique et légende côte à côte */
 .graph-and-legend {
+  max-width: 92vw;
   display: grid;
   grid-template-columns: 1fr 320px; /* graphique = 1fr, légende = fixe 320px */
   gap: var(--gap);
